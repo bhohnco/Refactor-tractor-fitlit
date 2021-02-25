@@ -6,7 +6,6 @@ import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
 
-// var's' to set up back end
 const userUrl = 'http://localhost:3001/api/v1/users';
 const sleepUrl = 'http://localhost:3001/api/v1/sleep';
 const activityUrl = 'http://localhost:3001/api/v1/activity';
@@ -20,6 +19,7 @@ let user = null;
 let sleepData = [];
 let activityData = [];
 let hydrationData = [];
+// need to put old date back ask team for date.
 let todayDate = "2021/02/25";
 
 // DOM ELEMENTS
@@ -52,33 +52,33 @@ const sleepMainCard = document.querySelector('#sleep-main-card');
 const sleepUserHoursToday = document.querySelector('#sleep-user-hours-today');
 const stairsCalendarCard = document.querySelector('#stairs-calendar-card');
 const stairsCalendarFlightsAverageWeekly = document.querySelector('#stairs-calendar-flights-average-weekly');
-let stairsCalendarStairsAverageWeekly = document.querySelector('#stairs-calendar-stairs-average-weekly');
-let stepsMainCard = document.querySelector('#steps-main-card');
-let stepsInfoCard = document.querySelector('#steps-info-card');
-let stepsFriendsCard = document.querySelector('#steps-friends-card');
-let stepsTrendingCard = document.querySelector('#steps-trending-card');
-let stepsCalendarCard = document.querySelector('#steps-calendar-card');
-let stairsFriendFlightsAverageToday = document.querySelector('#stairs-friend-flights-average-today');
-let stairsFriendsCard = document.querySelector('#stairs-friends-card');
-let stairsInfoCard = document.querySelector('#stairs-info-card');
-let stairsInfoFlightsToday = document.querySelector('#stairs-info-flights-today');
-let stairsMainCard = document.querySelector('#stairs-main-card');
-let stairsTrendingButton = document.querySelector('.stairs-trending-button');
-let stairsTrendingCard = document.querySelector('#stairs-trending-card');
-let stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
-let stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
-let stepsCalendarTotalStepsWeekly = document.querySelector('#steps-calendar-total-steps-weekly');
-let stepsFriendAverageStepGoal = document.querySelector('#steps-friend-average-step-goal');
-let stepsInfoActiveMinutesToday = document.querySelector('#steps-info-active-minutes-today');
-let stepsInfoMilesWalkedToday = document.querySelector('#steps-info-miles-walked-today');
-let stepsFriendActiveMinutesAverageToday = document.querySelector('#steps-friend-active-minutes-average-today');
-let stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps-average-today');
-let stepsTrendingButton = document.querySelector('.steps-trending-button');
-let stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
-let trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
-let trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
-let userInfoDropdown = document.querySelector('#user-info-dropdown');
-let friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
+const stairsCalendarStairsAverageWeekly = document.querySelector('#stairs-calendar-stairs-average-weekly');
+const stepsMainCard = document.querySelector('#steps-main-card');
+const stepsInfoCard = document.querySelector('#steps-info-card');
+const stepsFriendsCard = document.querySelector('#steps-friends-card');
+const stepsTrendingCard = document.querySelector('#steps-trending-card');
+const stepsCalendarCard = document.querySelector('#steps-calendar-card');
+const stairsFriendFlightsAverageToday = document.querySelector('#stairs-friend-flights-average-today');
+const stairsFriendsCard = document.querySelector('#stairs-friends-card');
+const stairsInfoCard = document.querySelector('#stairs-info-card');
+const stairsInfoFlightsToday = document.querySelector('#stairs-info-flights-today');
+const stairsMainCard = document.querySelector('#stairs-main-card');
+const stairsTrendingButton = document.querySelector('.stairs-trending-button');
+const stairsTrendingCard = document.querySelector('#stairs-trending-card');
+const stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
+const stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
+const stepsCalendarTotalStepsWeekly = document.querySelector('#steps-calendar-total-steps-weekly');
+const stepsFriendAverageStepGoal = document.querySelector('#steps-friend-average-step-goal');
+const stepsInfoActiveMinutesToday = document.querySelector('#steps-info-active-minutes-today');
+const stepsInfoMilesWalkedToday = document.querySelector('#steps-info-miles-walked-today');
+const stepsFriendActiveMinutesAverageToday = document.querySelector('#steps-friend-active-minutes-average-today');
+const stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps-average-today');
+const stepsTrendingButton = document.querySelector('.steps-trending-button');
+const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
+const trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
+const trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
+const userInfoDropdown = document.querySelector('#user-info-dropdown');
+const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
 
 Promise.all([getUserData, getSleepData, getActivityData, getHydrationData])
   .then((values) => {
@@ -165,11 +165,13 @@ function showDropdown() {
 }
 
 function updateTrendingStairsDays() {
+  // is returning null think it is the  user.findTrendingStairsDays() method. may also be
   user.findTrendingStairsDays();
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
 function updateTrendingStepDays() {
+  // is returning null think it is the user.findTrendingStepDays() method. may also be date
   user.findTrendingStepDays();
   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
 }
@@ -198,6 +200,7 @@ function userElements() {
 
 function hydroElements() {
   hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
+    console.log(hydration)
     return hydration.userID === user.id && hydration.date === todayDate;
   }).numOunces;
   hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
