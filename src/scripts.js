@@ -1,41 +1,126 @@
+
+
+const userUrl = 'http://localhost:3001/api/v1/users';
+const sleepUrl = 'http://localhost:3001/api/v1/sleep';
+const activityUrl = 'http://localhost:3001/api/v1/activity';
+const hydrationUrl = 'http://localhost:3001/api/v1/hydration';
+const userRepository = new UserRepository()
+let user = null;
+let sleepData = [];
+let activityData = [];
+let hydrationData = [];
+
 import './css/base.scss';
 import './css/styles.scss';
 
-import userData from './data/users';
-import activityData from './data/activity';
-import sleepData from './data/sleep';
-import hydrationData from './data/hydration';
+// // import userData from './data/users';
+// import activityData from './data/activity';
+// import sleepData from './data/sleep';
+// import hydrationData from './data/hydration';
+// window.addEventListener("load", test())
 
 import UserRepository from './UserRepository';
 import User from './User';
 import Activity from './Activity';
 import Hydration from './Hydration';
 import Sleep from './Sleep';
+const bodyButton = document.querySelector("body")
+//
+// function fetchData() {
+// getUserData();
+// getSleepData();
+const getUserData = fetch(userUrl).then(response => response.json())
+const getSleepData = fetch(sleepUrl).then(response => response.json())
+const getActivityData = fetch(activityUrl).then(response => response.json())
+const getHydrationData = fetch(hydrationUrl).then(response => response.json())
+
+Promise.all([getUserData, getSleepData, getActivityData, getHydrationData])
+  .then((values) => {
+    buildUserRepo(values[0].userData);
+    buildSleepData(values[1].sleepData)
+    buildActivityData(values[2].activityData)
+    buildHydrationData(values[3].hydrationData)
+  })
 
 
 
-let userRepository = new UserRepository();
 
-userData.forEach(user => {
-  user = new User(user);
-  userRepository.users.push(user)
-});
+function buildUserRepo(getUserData) {
+  getUserData.forEach(user => {
+    userRepository.users.push(new User(user));
+  })
+  user = userRepository.users[Math.floor(Math.random() * userRepository.users.length)];
+}
+function buildSleepData(getSleepData) {
+  getSleepData.forEach(item => {
+    sleepData.push(new Sleep(item, userRepository));
+  })
+}
+function buildActivityData(getActivityData) {
+  getActivityData.forEach(item => {
+    activityData.push(new Activity(item, userRepository))
+  })
+}
+function buildHydrationData(getHydrationData) {
+  getHydrationData.forEach(item => {
+    hydrationData.push(new Hydration(item, userRepository))
+  })
+}
 
-activityData.forEach(activity => {
-  activity = new Activity(activity, userRepository);
-});
+window.addEventListener("load", test)
 
-hydrationData.forEach(hydration => {
-  hydration = new Hydration(hydration, userRepository);
-});
 
-sleepData.forEach(sleep => {
-  sleep = new Sleep(sleep, userRepository);
-});
+// const getActivityData =
+//   fetch(activityUrl)
+//     .then(response => response.json())
+//     .then(responseSet => Object.values(responseSet)[0].forEach(dataItem => {
+//       activityData.push(new Activity (dataItem, userRepository));
+//     }))
 
-let user = userRepository.users[0];
+
+
+// function getSleepData() {
+//   let sleepData = [];
+//   fetch('http://localhost:3001/api/v1/sleep')
+//       .then(response => response.json())
+//       .then(sleep => sleep.sleepData.forEach(sleep => {
+//         sleepData.push(new Sleep(sleep))
+//       }))
+//       .catch(err => console.log(err))
+// }
+//
+// function getHydrationData() {
+//   let hydrationData = [];
+//   fetch()
+// }
+
+// bodyButton.addEventListener('click', () => {
+//   console.log("hello")
+//   console.log(userRepository.users)
+//   console.log(sleepData)
+// });
+
+
+
+// activityData.forEach(activity => {
+//   activity = new Activity(activity, userRepository);
+// });
+//
+// hydrationData.forEach(hydration => {
+//   hydration = new Hydration(hydration, userRepository);
+// });
+//
+// sleepData.forEach(sleep => {
+//   sleep = new Sleep(sleep, userRepository);
+// });
+//
+ user = userRepository.users[1];
 let todayDate = "2019/09/22";
-user.findFriendsNames(userRepository.users);
+function test() {
+    user.findFriendsNames(userRepository.users);
+}
+console.log(userRepository)
+console.log(user)
 
 let dailyOz = document.querySelectorAll('.daily-oz');
 let dropdownEmail = document.querySelector('#dropdown-email');
@@ -115,7 +200,7 @@ function flipCard(cardToHide, cardToShow) {
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
-
+//
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {
     flipCard(stepsMainCard, stepsInfoCard);
