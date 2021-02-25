@@ -119,9 +119,7 @@ function buildHydrationData(getHydrationData) {
 function buildPage() {
   userElements()
   walkCardBuild()
-  console.log(user, '5')
   waterCardBuild()
-  console.log(user, '6')
   sleepCardBuild()
   console.log(user, '7')
   stairsCardBuild()
@@ -206,13 +204,17 @@ function userElements() {
 }
 
 function hydroElements() {
-  hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
-    return hydration.userID === user.id && hydration.date === todayDate;
-  }).numOunces;
+  let hydroToday =  hydrationData.find(hydration => {
+    hydration.userID === user.id && hydration.date === todayDate;
+    return hydration;
+  })
+  hydrationUserOuncesToday.innerText = hydroToday.ounces
   hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
-  hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
-    return hydration.userID === user.id && hydration.date === todayDate;
-  }).numOunces / 8;
+  let hydroFriend = hydrationData.find(hydration => {
+    hydration.userID === user.id && hydration.date === todayDate;
+    return hydration
+  })
+  hydrationInfoGlassesToday.innerText = hydroFriend.ounces
 }
 
 function sleepElements() {
@@ -228,16 +230,18 @@ function sleepElements() {
 }
 // bad naming on sleep functions ask team.
 function sleepElementsTwo() {
-  stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
-    return (activity.date === todayDate && activity.userId === user.id)
-  }).calculateMiles(userRepository);
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
-  sleepInfoQualityToday.innerText = sleepData.find(sleep => {
-    return sleep.userID === user.id && sleep.date === todayDate;
-  }).sleepQuality;
-  sleepUserHoursToday.innerText = sleepData.find(sleep => {
-    return sleep.userID === user.id && sleep.date === todayDate;
-  }).hoursSlept;
+  let sleepQtoday = sleepData.find(sleep => {
+    sleep.userID === user.id && sleep.date === todayDate;
+    return sleep;
+  }
+  console.log(sleepQtoday)
+  // sleepInfoQualityToday.innerText = sleepData.find(sleep => {
+  //   return sleep.userID === user.id && sleep.date === todayDate;
+  // }).sleepQuality;
+  // sleepUserHoursToday.innerText = sleepData.find(sleep => {
+  //   return sleep.userID === user.id && sleep.date === todayDate;
+  // }).hoursSlept;
 }
 
 function stairAveElements() {
@@ -259,6 +263,10 @@ function stairTodayElements() {
 }
 
 function stepElements() {
+  stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
+    return (activity.date === todayDate && activity.userId === user.id)
+  }).calculateMiles(userRepository);
+
   stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(todayDate);
   stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
   let minAct =  stepsInfoActiveMinutesToday.innerText = activityData.find(activity => {
