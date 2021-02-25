@@ -19,8 +19,8 @@ let user = null;
 let sleepData = [];
 let activityData = [];
 let hydrationData = [];
-// need to put old date back ask team for date.
-let todayDate = "2021/02/25";
+// need to put old date back ask team for date new date has no data to use.
+let todayDate = "2019/09/22";
 
 // DOM ELEMENTS
 const dailyOz = document.querySelectorAll('.daily-oz');
@@ -164,9 +164,14 @@ function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
 
+
 function updateTrendingStairsDays() {
-  // is returning null think it is the  user.findTrendingStairsDays() method. may also be
+  // is returning null think it is the  user.findTrendingStairsDays() method. may also
+
+  console.log('user', user)
+  console.log(user.findTrendingStairsDays())
   user.findTrendingStairsDays();
+
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
