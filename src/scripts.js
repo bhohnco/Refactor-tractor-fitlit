@@ -1,4 +1,4 @@
-import userData from "./data/users";
+
 
 const userUrl = 'http://localhost:3001/api/v1/users';
 const sleepUrl = 'http://localhost:3001/api/v1/sleep';
@@ -17,7 +17,7 @@ import './css/styles.scss';
 // import activityData from './data/activity';
 // import sleepData from './data/sleep';
 // import hydrationData from './data/hydration';
-// window.addEventListener("load", fetchData)
+// window.addEventListener("load", test())
 
 import UserRepository from './UserRepository';
 import User from './User';
@@ -67,7 +67,7 @@ function buildHydrationData(getHydrationData) {
   })
 }
 
-
+window.addEventListener("load", test)
 
 
 // const getActivityData =
@@ -114,10 +114,13 @@ function buildHydrationData(getHydrationData) {
 //   sleep = new Sleep(sleep, userRepository);
 // });
 //
-// let user = userRepository.users[1];
+ user = userRepository.users[1];
 let todayDate = "2019/09/22";
-console.log(userRepository.users)
-user.findFriendsNames(userRepository.users);
+function test() {
+    user.findFriendsNames(userRepository.users);
+}
+console.log(userRepository)
+console.log(user)
 
 let dailyOz = document.querySelectorAll('.daily-oz');
 let dropdownEmail = document.querySelector('#dropdown-email');
