@@ -19,7 +19,6 @@ let user = null;
 let sleepData = [];
 let activityData = [];
 let hydrationData = [];
-// need to put old date back ask team for date new date has no data to use.
 let todayDate = "2019/09/22";
 
 // DOM ELEMENTS
@@ -87,7 +86,10 @@ Promise.all([getUserData, getSleepData, getActivityData, getHydrationData])
     buildActivityData(values[2].activityData);
     buildHydrationData(values[3].hydrationData);
     buildPage();
+    console.log(user, '2')
   })
+
+// window.addEventListener('load', buildPage)
 
 function buildUserRepo(getUserData) {
   getUserData.forEach(user => {
@@ -117,10 +119,15 @@ function buildHydrationData(getHydrationData) {
 function buildPage() {
   userElements()
   walkCardBuild()
+  console.log(user, '5')
   waterCardBuild()
+  console.log(user, '6')
   sleepCardBuild()
+  console.log(user, '7')
   stairsCardBuild()
+  console.log(user, '8')
   hiddenOnBuild()
+  console.log(user, '9')
 }
 
 function walkCardBuild() {
@@ -164,14 +171,9 @@ function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
 
-
 function updateTrendingStairsDays() {
   // is returning null think it is the  user.findTrendingStairsDays() method. may also
-
-  console.log('user', user)
-  console.log(user.findTrendingStairsDays())
   user.findTrendingStairsDays();
-
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
@@ -205,7 +207,6 @@ function userElements() {
 
 function hydroElements() {
   hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
-    console.log(hydration)
     return hydration.userID === user.id && hydration.date === todayDate;
   }).numOunces;
   hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
@@ -260,12 +261,16 @@ function stairTodayElements() {
 function stepElements() {
   stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(todayDate);
   stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
-  stepsInfoActiveMinutesToday.innerText = activityData.find(activity => {
-    return activity.userID === user.id && activity.date === todayDate;
-  }).minutesActive;
-  stepsUserStepsToday.innerText = activityData.find(activity => {
-    return activity.userID === user.id && activity.date === todayDate;
-  }).numSteps;
+  let minAct =  stepsInfoActiveMinutesToday.innerText = activityData.find(activity => {
+      activity.userID === user.id && activity.date === todayDate;
+      return activity
+  })
+  stepsInfoActiveMinutesToday.innerText = minAct.minutesActive;
+  let stepAct = activityData.find(activity => {
+    activity.userID === user.id && activity.date === todayDate;
+    return activity
+  })
+  stepsUserStepsToday.innerText = stepAct.steps;
 }
 
 function stepFriendElements() {
