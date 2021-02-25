@@ -236,12 +236,12 @@ function sleepElementsTwo() {
     return sleep;
   }
   console.log(sleepQtoday)
-  // sleepInfoQualityToday.innerText = sleepData.find(sleep => {
-  //   return sleep.userID === user.id && sleep.date === todayDate;
-  // }).sleepQuality;
-  // sleepUserHoursToday.innerText = sleepData.find(sleep => {
-  //   return sleep.userID === user.id && sleep.date === todayDate;
-  // }).hoursSlept;
+  sleepInfoQualityToday.innerText = sleepData.find(sleep => {
+    return sleep.userID === user.id && sleep.date === todayDate;
+  }).sleepQuality;
+  sleepUserHoursToday.innerText = sleepData.find(sleep => {
+    return sleep.userID === user.id && sleep.date === todayDate;
+  }).hoursSlept;
 }
 
 function stairAveElements() {
@@ -253,9 +253,11 @@ function stairAveElements() {
 }
 
 function stairTodayElements() {
+
   stairsInfoFlightsToday.innerText = activityData.find(activity => {
     return activity.userID === user.id && activity.date === todayDate;
   }).flightsOfStairs;
+
   stairsUserStairsToday.innerText = activityData.find(activity => {
     return activity.userID === user.id && activity.date === todayDate;
   }).flightsOfStairs * 12;
@@ -269,11 +271,13 @@ function stepElements() {
 
   stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(todayDate);
   stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
-  let minAct =  stepsInfoActiveMinutesToday.innerText = activityData.find(activity => {
+
+  let minAct = activityData.find(activity => {
       activity.userID === user.id && activity.date === todayDate;
       return activity
   })
   stepsInfoActiveMinutesToday.innerText = minAct.minutesActive;
+
   let stepAct = activityData.find(activity => {
     activity.userID === user.id && activity.date === todayDate;
     return activity
@@ -341,7 +345,7 @@ function showInfo() {
     flipCard(hydrationMainCard, hydrationInfoCard);
   }
   if (event.target.classList.contains('hydration-friends-button')) {
-    flipCard(hydrationMainCard, hydrationFriendsCard);
+    (hydrationMainCard, hydrationFriendsCard);
   }
   if (event.target.classList.contains('hydration-calendar-button')) {
     flipCard(hydrationMainCard, hydrationCalendarCard);
