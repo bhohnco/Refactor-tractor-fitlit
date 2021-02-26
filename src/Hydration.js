@@ -1,15 +1,17 @@
-class Hydration {
-  constructor(data, userRepository) {
-    this.userId = data.userID;
+import User from './user';
+class Hydration extends User {
+  constructor(userData, data, userRepository) {
+    super(userData);
     this.date = data.date;
     this.ounces = data.numOunces;
+    console.log(this)
     this.drink(userRepository);
   }
   drink(userRepo) {
-    var hydrate = this;
-    userRepo.users.find(function(user) {
-      return user.id === hydrate.userId;
-    }).updateHydration(this.date, this.ounces);
+    const parentUser = userRepo.users.find(user => {
+      return user.id === this.id;
+    })
+    parentUser.updateHydration(this.date, this.ounces);
   }
 }
 
