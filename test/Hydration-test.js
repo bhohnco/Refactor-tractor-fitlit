@@ -10,7 +10,7 @@ describe.only('Hydration', function() {
   let user2;
   let hydrate1;
   let hydrate2;
-  let doubleHydrate;
+  let hydrate3;
   let userRepository;
   beforeEach(() => {
     user1 = new User(hydrationTestData[0][0]);
@@ -19,9 +19,8 @@ describe.only('Hydration', function() {
     userRepository.users.push(user1, user2);
     hydrate1 = new Hydration(user1, hydrationTestData[1][0], userRepository);
     hydrate2 = new Hydration(user2, hydrationTestData[1][1], userRepository);
+    hydrate3 = new Hydration(user2, hydrationTestData[1][2], userRepository);
     userRepository.users.push(user1, user2);
-    doubleHydrate = hydrationTestData[1][2];
-    user2.hydrationData.push(doubleHydrate)
   })
   it('should be an instance of hydrate', function() {
     expect(hydrate1).to.be.an.instanceof(Hydration);
@@ -36,14 +35,20 @@ describe.only('Hydration', function() {
     expect(hydrate2.ounces).to.equal(75);
   });
   describe('drink', function () {
-    it.only('should update the average number of ounces over all time', function() {
-      console.log(user2.hydrationData)
+    it('should update the average number of ounces over all time', function() {
       hydrate2.updateHydration(user2);
+      hydrate3.updateHydration(user2);
       expect(user2.ouncesAverage).to.equal(83);
     })
     it('should add the date and amount to the object record', function() {
-      expect(user1.ouncesRecord).to.deep.equal([{"2019/06/15": 37}])
-      expect(user2.ouncesRecord.length).to.equal(2)
+      expect(user1.hydrationData[0]).to.be.instanceof(Hydration)
+      expect(user2.hydrationData.length).to.equal(2)
     })
   });
+  describe('checkWeeksConsumption', () => {
+    it(
+      'should determine how much water was consumed each day of a week', () => {
+        expect()
+      })
+  })
 });
