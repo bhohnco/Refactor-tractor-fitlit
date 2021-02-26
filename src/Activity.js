@@ -1,5 +1,7 @@
-class Activity {
-  constructor(data, userRepository) {
+import User from './User'
+class Activity extends User {
+  constructor(userData, data, userRepository) {
+    super(userData);
     this.userId = data.userID;
     this.date = data.date;
     this.steps = data.numSteps;

@@ -1,5 +1,7 @@
- class User {
+ import UserRepository from './UserRepository'
+ class User extends UserRepository {
   constructor(userData) {
+    super();
     this.id = userData.id;
     this.name = userData.name;
     this.address = userData.address;
