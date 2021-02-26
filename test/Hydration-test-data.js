@@ -37,7 +37,9 @@ const hydrationTestData = [[{
   "numOunces": 75
 },
 {
-  "2019/06/16": 91
+  "userID": 2,
+  "date": "2019/06/16",
+  "numOunces": 91
 }
 ]
 ]
