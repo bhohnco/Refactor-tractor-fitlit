@@ -18,9 +18,14 @@ class Hydration extends User {
     user.hydrationData.find(hydrationObj => hydrationObj[this.date]);
     
     if (!hydrationDataCheck) {
-      user.hydrationData.unshift({[this.date]: this.ounces});
-      console.log(user.hydrationData)
-      const totalOunces = user.hydrationData.reduce((numAcc, hydrationObj) => {
+      user.hydrationData.unshift(this);
+      const mappedHydrationData = user.hydrationData.map(hydration => {
+        const newObj = {};
+        newObj[hydration.date] = hydration.ounces
+        return newObj;
+      })
+
+      const totalOunces = mappedHydrationData.reduce((numAcc, hydrationObj) => {
         numAcc += Object.values(hydrationObj)[0];
         return numAcc;
       }, 0);
@@ -28,9 +33,9 @@ class Hydration extends User {
     }
 
   }   
-  
 
   addDailyOunces(date) {
+    this.addDailyData()
     return this.ouncesRecord.reduce((sum, record) => {
       let amount = record[date];
       if (amount) {
