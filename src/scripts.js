@@ -97,13 +97,15 @@ function buildUserRepo(getUserData) {
 
 function buildSleepData(getSleepData) {
   getSleepData.forEach(item => {
-    sleepData.push(new Sleep(item, userRepository));
+    const matchingUser = userRepository.getUser(item.userID);
+    sleepData.push(new Sleep(matchingUser, item, userRepository));
   })
 }
 
 function buildActivityData(getActivityData) {
   getActivityData.forEach(item => {
-    activityData.push(new Activity(item, userRepository))
+    const matchingUser = userRepository.getUser(item.userID);
+    activityData.push(new Activity(matchingUser, item, userRepository))
   })
 }
 
@@ -213,7 +215,7 @@ function hydroElements() {
     return hydration;
   })
   hydrationUserOuncesToday.innerText = hydroToday.ounces
-  hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+  hydrationFriendOuncesToday.innerText = user.calculateAverageDailyWater(todayDate);
   let hydroFriend = hydrationData.find(hydration => {
     hydration.userID === user.id && hydration.date === todayDate;
     return hydration
