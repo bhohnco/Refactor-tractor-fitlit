@@ -109,7 +109,8 @@ function buildActivityData(getActivityData) {
 
 function buildHydrationData(getHydrationData) {
   getHydrationData.forEach(item => {
-    hydrationData.push(new Hydration(item, userRepository))
+    const matchingUser = userRepository.getUser(item.userID);
+    hydrationData.push(new Hydration(matchingUser, item, userRepository))
   })
 }
 
@@ -182,7 +183,7 @@ function updateTrendingStepDays() {
 }
 
 function sortHydroDate() {
-  let sortedHydrationDataByDate = user.ouncesRecord.sort((a, b) => {
+  let sortedHydrationDataByDate = user.hydrationData.sort((a, b) => {
     if (Object.keys(a)[0] > Object.keys(b)[0]) {
       return -1;
     }
@@ -192,7 +193,10 @@ function sortHydroDate() {
     return 0;
   });
   for (var i = 0; i < dailyOz.length; i++) {
-    dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
+    const matchingHydrationInst = 
+    hydrationData.find(datasetObj => 
+      datasetObj.date === Object.keys(sortedHydrationDataByDate[i])[0]);
+    // dailyOz[i].innerText =  .addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
   }
 }
 
