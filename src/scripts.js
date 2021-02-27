@@ -174,7 +174,7 @@ function showDropdown() {
 
 function updateTrendingStairsDays() {
   // is returning null think it is the  user.findTrendingStairsDays() method. may also
-  user.findTrendingStairsDays();
+  userRepository.users[0].findTrendingStairsDays();
   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
 }
 
@@ -281,11 +281,12 @@ function stairsTodayElement() {
 }
 
 function stepElements() {
-  stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
-    return (activity.date === todayDate && activity.userId === user.id)
-  }).calculateMiles(userRepository);
-  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'minutesActive', 0);
-  stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'steps', 0);
+  const calculatedMiles = user.activityData.find(activity => {
+    return (activity.date === todayDate && activity.id === user.id)
+  });
+  stepsInfoMilesWalkedToday.innerText = calculatedMiles.calculateMiles() 
+  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'minutesActive', 0);
+  stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'steps', 0);
 }
 
 function stepMinToday() {
