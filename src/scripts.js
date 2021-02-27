@@ -230,16 +230,17 @@ function sleepElements() {
 }
 
 function sleepFriendsLongest() {
-  sleepFriendLongestSleeper.innerText = userRepository.users.find(user => {
-    return user.id === userRepository.getLongestSleepers(todayDate)
-  }).getFirstName();
+  // let longest = userRepository.users.find(user => {
+  //   return user.id === userRepository.getLongestSleepers(todayDate, sleepData)
+  // }).getFirstName();
+// sleepFriendLongestSleeper.innerText = longest
 }
 
 function sleepFriendsWorst() {
-  sleepFriendWorstSleeper.innerText = userRepository.users.find(user => {
-    return user.id === userRepository.getWorstSleepers(todayDate)
-  }).getFirstName();
-  sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+  // let worst = userRepository.users.find(user => {
+  //   return user.id === userRepository.getWorstSleepers(todayDate, sleepData)
+  // }).getFirstName();
+  // sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
 }
 
 function sleepQToday() {
