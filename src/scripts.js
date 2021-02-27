@@ -412,6 +412,8 @@ function showInfo() {
   // userkey and objectKey go in as strings.
   // calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
 
+
+
 // -----OLD STUFF!!!----
 // old file paths
 // // import userData from './data/users';

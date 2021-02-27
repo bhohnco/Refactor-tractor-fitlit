@@ -62,7 +62,8 @@ class UserRepository {
 
   findBestSleepers(date) {
     return this.users.filter(user => {
-      return user.calculateAverageThisWeek(todayDate, 'sleepQualityRecord', 'quality', 1);
+      console.log(user)
+      return user.calculateAverageThisWeek(date, 'sleepQualityRecord', 'quality', 1);
       // return user.calculateAverageQualityThisWeek(date) > 3;
     })
   }
@@ -86,8 +87,6 @@ class UserRepository {
 }
 
 export default UserRepository;
-
-
 // ---- OLD CODE ----
 
   // calculateAverageSteps(date) {
