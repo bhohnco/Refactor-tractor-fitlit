@@ -230,16 +230,17 @@ function sleepElements() {
 }
 
 function sleepFriendsLongest() {
-  sleepFriendLongestSleeper.innerText = userRepository.users.find(user => {
-    return user.id === userRepository.getLongestSleepers(todayDate)
-  }).getFirstName();
+  // let longest = userRepository.users.find(user => {
+  //   return user.id === userRepository.getLongestSleepers(todayDate, sleepData)
+  // }).getFirstName();
+// sleepFriendLongestSleeper.innerText = longest
 }
 
 function sleepFriendsWorst() {
-  sleepFriendWorstSleeper.innerText = userRepository.users.find(user => {
-    return user.id === userRepository.getWorstSleepers(todayDate)
-  }).getFirstName();
-  sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+  // let worst = userRepository.users.find(user => {
+  //   return user.id === userRepository.getWorstSleepers(todayDate, sleepData)
+  // }).getFirstName();
+  // sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
 }
 
 function sleepQToday() {
@@ -261,7 +262,7 @@ function sleepToday() {
 function stairAveElements() {
   stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1) * 12).toFixed(0);
   stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1);
-  stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageStairs(todayDate) / 12).toFixed(1);
+  stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageActivity(todayDate, 'flightsOfStairs') / 12).toFixed(1);
 }
 
 function flightsTodayElement() {
@@ -306,9 +307,9 @@ function stepAct() {
 }
 
 function stepFriendElements() {
-  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageMinutesActive(todayDate);
+  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'todayDate')
   stepsFriendAverageStepGoal.innerText = `${userRepository.calculateAverageStepGoal()}`;
-  stepsFriendStepsAverageToday.innerText = userRepository.calculateAverageSteps(todayDate);
+  stepsFriendStepsAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'steps');
   user.findFriendsTotalStepsForWeek(userRepository.users, todayDate);
 }
 
@@ -406,8 +407,13 @@ function showInfo() {
 }
 
 // ---notes---
+// listItemKey go's in as a string
+// calculateAverageActivity(date, listItemKey)
+
   // userkey and objectKey go in as strings.
   // calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
+
+
 
 // -----OLD STUFF!!!----
 // old file paths
