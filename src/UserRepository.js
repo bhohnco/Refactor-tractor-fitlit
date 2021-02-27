@@ -30,10 +30,10 @@ class UserRepository {
     return totalSleepQuality / this.users.length;
   }
 
-  findDate(date) {
+  findDate(date, prop = 'activityData') {
     let datelist = this.users.map(user => {
-      return user.activityRecord.filter(activity => {
-        return activity.date === date;
+      return user[prop].filter(item => {
+        return item.date === date;
       });
     })
     return datelist;
@@ -51,11 +51,9 @@ class UserRepository {
   }
 
   calculateAverageDailyWater(date) {
-    let todaysDrinkers = this.users.filter(user => {
-      return user.addDailyOunces(date) > 0;
-    });
+    let todaysDrinkers = this.findDate(date, 'hydrationData');
     let sumDrankOnDate = todaysDrinkers.reduce((sum, drinker) => {
-      return sum += drinker.addDailyOunces(date);
+      return sum += drinker[0].ounces;
     }, 0)
     return Math.floor(sumDrankOnDate / todaysDrinkers.length);
   }
@@ -64,7 +62,6 @@ class UserRepository {
     return this.users.filter(user => {
       console.log(user)
       return user.calculateAverageThisWeek(date, 'sleepQualityRecord', 'quality', 1);
-      // return user.calculateAverageQualityThisWeek(date) > 3;
     })
   }
 

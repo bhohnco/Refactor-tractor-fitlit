@@ -1,5 +1,5 @@
- import UserRepository from './UserRepository'
- class User extends UserRepository {
+import UserRepository from './UserRepository'
+class User extends UserRepository {
   constructor(userData) {
     super();
     this.id = userData.id;
@@ -16,7 +16,7 @@
     this.sleepQualityAverage = 0;
     this.sleepHoursRecord = [];
     this.sleepQualityRecord = [];
-    this.activityRecord = [];
+    this.activityData = []
     this.accomplishedDays = [];
     this.trendingStepDays = [];
     this.trendingStairsDays = [];
@@ -28,6 +28,46 @@
     var names = this.name.split(' ');
     return names[0].toUpperCase();
   }
+  // updateHydration(date, amount) {
+  //   this.ouncesRecord.unshift({[date]: amount});
+  //   if (this.ouncesRecord.length) {
+  //     this.ouncesAverage = Math.round((amount + (this.ouncesAverage * (this.ouncesRecord.length - 1))) / this.ouncesRecord.length);
+  //   } else {
+  //     this.ouncesAverage = amount;
+  //   }
+  // }
+  // addDailyOunces(date) {
+  //   return this.hydrationData.reduce((sum, record) => {
+  //     let amount = record[date];
+  //     if (amount) {
+  //       sum += amount
+  //     }
+  //     return sum
+  //   }, 0)
+  // }
+  // return sum;
+  // }, 0));
+  // }
+  calculateTotalStepsThisWeek(date) {
+    this.totalStepsThisWeek = 
+    this.getSumByDate(this.activityData.record, 'steps', 7);
+  }
+  getSumByDate(dataSet, prop, limit = dataSet.length) {
+    return dataSet.reduce((sum, dataItem, index) => {
+      if (index <= dataSet.indexOf(dataItem) 
+      && dataSet.indexOf(dataItem) <= limit - 1) {
+        console.log(dataItem)
+        sum += dataItem[prop];
+      }
+      return sum
+    }, 0)
+  } 
+  // updateActivities(activity) {
+  //   this.activityRecord.unshift(activity);
+  //   if (activity.numSteps >= this.dailyStepGoal) {
+  //     this.accomplishedDays.unshift(activity.date);
+  //   }
+  // }
 
   updateSleep(date, hours, quality) {
     this.sleepHoursRecord.unshift({
@@ -50,8 +90,33 @@
     }
   }
 
+  calculateAverageHoursThisWeek(todayDate) {
+    return (this.sleepHoursRecord.reduce((sum, sleepAct) => {
+      let index = this.sleepHoursRecord.indexOf(this.sleepHoursRecord.find(sleep => sleep.date === todayDate));
+      if (index <= this.sleepHoursRecord.indexOf(sleepAct) && this.sleepHoursRecord.indexOf(sleepAct) <= (index + 6)) {
+        sum += sleepAct.hours;
+      }
+      return sum;
+    }, 0) / 7).toFixed(1);
+  }
+  calculateAverageQualityThisWeek(todayDate) {
+    return (this.sleepQualityRecord.reduce((sum, sleepAct) => {
+      let index = this.sleepQualityRecord.indexOf(this.sleepQualityRecord.find(sleep => sleep.date === todayDate));
+      if (index <= this.sleepQualityRecord.indexOf(sleepAct) && this.sleepQualityRecord.indexOf(sleepAct) <= (index + 6)) {
+        sum += sleepAct.quality;
+      }
+      return sum;
+    }, 0) / 7).toFixed(1);
+  }
+  // updateActivities(activity) {
+  //   this.activityRecord.unshift(activity);
+  //   if (activity.numSteps >= this.dailyStepGoal) {
+  //     this.accomplishedDays.unshift(activity.date);
+  //   }
+  // }
+
   findClimbingRecord() {
-    return this.activityRecord.sort((a, b) => {
+    return this.activityData.sort((a, b) => {
       return b.flightsOfStairs - a.flightsOfStairs;
     })[0].flightsOfStairs;
   }
@@ -63,7 +128,7 @@
   }
 
   calculateDailyCalories(date) {
-    let totalMinutes = this.activityRecord.filter(activity => {
+    let totalMinutes = this.activityData.filter(activity => {
       return activity.date === date
     }).reduce((sumMinutes, activity) => {
       return sumMinutes += activity.minutesActive
@@ -72,7 +137,7 @@
   }
 
   updateActivities(activity) {
-    this.activityRecord.unshift(activity);
+    this.activityData.unshift(activity);
     if (activity.numSteps >= this.dailyStepGoal) {
       this.accomplishedDays.unshift(activity.date);
     }
@@ -89,9 +154,9 @@
   }
 
   calculateTotalStepsThisWeek(todayDate) {
-    this.totalStepsThisWeek = (this.activityRecord.reduce((sum, activity) => {
-      let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
-      if (index <= this.activityRecord.indexOf(activity) && this.activityRecord.indexOf(activity) <= (index + 6)) {
+    this.totalStepsThisWeek = (this.activityData.reduce((sum, activity) => {
+      let index = this.activityData.indexOf(this.activityData.find(activity => activity.date === todayDate));
+      if (index <= this.activityData.indexOf(activity) && this.activityData.indexOf(activity) <= (index + 6)) {
         sum += activity.steps;
       }
       return sum;
@@ -100,9 +165,9 @@
 
   findTrendingStepDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityRecord.length; i++) {
-      if (this.activityRecord[i + 1] && this.activityRecord[i].steps > this.activityRecord[i + 1].steps) {
-        positiveDays.unshift(this.activityRecord[i].date);
+    for (var i = 0; i < this.activityData.length; i++) {
+      if (this.activityData[i + 1] && this.activityData[i].steps > this.activityData[i + 1].steps) {
+        positiveDays.unshift(this.activityData[i].date);
       } else if (positiveDays.length > 2) {
         this.trendingStepDays.push(`Your most recent positive step streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];
@@ -112,15 +177,21 @@
 
   findTrendingStairsDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityRecord.length; i++) {
-      if (this.activityRecord[i + 1] && this.activityRecord[i].flightsOfStairs > this.activityRecord[i + 1].flightsOfStairs) {
-        positiveDays.unshift(this.activityRecord[i].date);
+    for (var i = 0; i < this.activityData.length; i++) {
+      if (this.activityData[i + 1] && this.activityData[i].flightsOfStairs > this.activityData[i + 1].flightsOfStairs) {
+        positiveDays.unshift(this.activityData[i].date);
       } else if (positiveDays.length > 2) {
         this.trendingStairsDays.push(`Your most recent positive climbing streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];
       }
     }
   }
+  findFriendsNames(users) {
+    this.friends.forEach(friend => {
+      this.friendsNames.push(users.find(user => user.id === friend).getFirstName());
+    })
+  }
+ 
 
   findFriendsTotalStepsForWeek(users, date) {
     this.friends.map(friend => {

@@ -60,9 +60,7 @@ describe('Activity', function() {
   it('should be an instance of activity', function() {
     expect(activity1).to.be.an.instanceof(Activity);
   });
-  it('should hold a userId', function() {
-    expect(activity2.userId).to.equal(2);
-  });
+
   it('should hold a date', function() {
     expect(activity1.date).to.equal("2019/06/15");
   });
@@ -82,7 +80,7 @@ describe('Activity', function() {
     expect(activity2.reachedStepGoal).to.equal(null);
   });
   it('doActivity should add activities to user record', function() {
-    expect(user1.activityRecord.length).to.equal(1);
+    expect(user1.activityData.record.length).to.equal(1);
   });
   it('should have a method that calculate miles walked', function() {
     expect(activity1.calculateMiles(userRepository)).to.equal('3.0');
@@ -97,4 +95,8 @@ describe('Activity', function() {
       expect(activity2.reachedStepGoal).to.equal(true);
     });
   });
+  it('updateAccomplishedDays should create an array of good days', function() {
+    activity2.updateActivities(user2);
+    expect(user2.activityData.accomplishedDays.length).to.equal(1);
+  })
 });
