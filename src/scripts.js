@@ -143,8 +143,6 @@ function sleepCardBuild() {
   sleepElements()
   sleepQToday()
   sleepToday()
-  sleepFriendsLongest()
-  sleepFriendsWorst()
 }
 
 function stairsCardBuild() {
@@ -155,8 +153,6 @@ function stairsCardBuild() {
 
 function hiddenOnBuild() {
   findFrirnds()
-  updateTrendingStairsDays()
-  updateTrendingStepDays()
 }
 
 function findFrirnds() {
@@ -172,24 +168,10 @@ function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
 
-function updateTrendingStairsDays() {
-  // is returning null think it is the  user.findTrendingStairsDays() method. may also
-  userRepository.users[0].findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-}
-
-function updateTrendingStepDays() {
-  // is returning null think it is the user.findTrendingStepDays() method. may also be date
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-}
 
 function sortHydroDate() {
   let sortedHydrationDataByDate = user.hydrationData[0].addDailyOunces(todayDate)
- 
-  
   for (var i = 0; i < sortedHydrationDataByDate.length - 1; i++) {
-   
     dailyOz[i].innerText =  
     sortedHydrationDataByDate[i].ounces;
   }
@@ -203,10 +185,6 @@ function userElements() {
 }
 
 function hydroElements() {
-  // let hydroToday =  hydrationData.find(hydration => {
-  //   hydration.userID === user.id && hydration.date === todayDate;
-  //   return hydration;
-  // })
   hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
   let hydroUser = user.hydrationData.find(hydration => {
     hydration.id === user.id && hydration.date === todayDate;
@@ -220,19 +198,6 @@ function sleepElements() {
   sleepCalendarHoursAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepHoursRecord', 'hours', 1);
   sleepCalendarQualityAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepQualityRecord', 'quality', 1);
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
-}
-
-function sleepFriendsLongest() {
-  // let longest = userRepository.users.find(user => {
-  //   return user.id === userRepository.getLongestSleepers(todayDate, sleepData)
-  // }).getFirstName();
-// sleepFriendLongestSleeper.innerText = longest
-}
-
-function sleepFriendsWorst() {
-  let worst = userRepository.users.find(user => {
-    return user.id === userRepository.getWorstSleepers(todayDate, sleepData)
-  }).getFirstName();
 }
 
 function sleepQToday() {
@@ -265,9 +230,9 @@ function flightsTodayElement() {
 }
 
 function stairsTodayElement() {
-  let stairsToday = activityData.find(activity => {
-    activity.userID === user.id && activity.date === todayDate;
-    return activity;
+  console.log('hello')
+  let stairsToday = user.activityData.find(activity => {
+    return activity.date === todayDate;
   })
   stairsUserStairsToday.innerText = stairsToday.flightsOfStairs * 12;
 }
@@ -329,16 +294,7 @@ function stepFriendsPara() {
 // all the events
 mainPage.addEventListener('click', showInfo);
 profileButton.addEventListener('click', showDropdown);
-stairsTrendingButton.addEventListener('click', updateTrendingStairsDays());
-stepsTrendingButton.addEventListener('click', updateTrendingStepDays());
-stairsTrendingButton.addEventListener('click', function() {
-  user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-});
-stepsTrendingButton.addEventListener('click', function() {
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-});
+
 
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {
@@ -401,8 +357,8 @@ function showInfo() {
 // listItemKey go's in as a string
 // calculateAverageActivity(date, listItemKey)
 
-  // userkey and objectKey go in as strings.
-  // calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
+// userkey and objectKey go in as strings.
+// calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
 
 
 
@@ -414,31 +370,42 @@ function showInfo() {
 // import hydrationData from './data/hydration';
 // old setup stuff
 // activityData.forEach(activity => {
-//   activity = new Activity(activity, userRepository);
-// });
-
-// hydrationData.forEach(hydration => {
-//   hydration = new Hydration(hydration, userRepository);
-// });
-
-// sleepData.forEach(sleep => {
-//   sleep = new Sleep(sleep, userRepository);
-// });
-// starting code combined with let sortedHydrationDataByDate var for scope issues.
-// for (var i = 0; i < dailyOz.length; i++) {
-//   dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
-// }
-// starting code
-// hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
-//   return hydration.userID === user.id && hydration.date === todayDate;
-// }).numOunces;
-//
-// hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
-//
-// hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
-//   return hydration.userID === user.id && hydration.date === todayDate;
-// }).numOunces / 8;
-
+  //   activity = new Activity(activity, userRepository);
+  // });
+  
+  // hydrationData.forEach(hydration => {
+    //   hydration = new Hydration(hydration, userRepository);
+    // });
+    
+    // function updateTrendingStairsDays() {
+    //   // is returning null think it is the  user.findTrendingStairsDays() method. may also
+    //   userRepository.users[0].findTrendingStairsDays();
+    //   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+    // }
+    
+    // function updateTrendingStepDays() {
+    //   // is returning null think it is the user.findTrendingStepDays() method. may also be date
+    //   user.findTrendingStepDays();
+    //   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+    // }
+    // sleepData.forEach(sleep => {
+      //   sleep = new Sleep(sleep, userRepository);
+      // });
+      // starting code combined with let sortedHydrationDataByDate var for scope issues.
+      // for (var i = 0; i < dailyOz.length; i++) {
+        //   dailyOz[i].innerText = user.addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
+        // }
+        // starting code
+        // hydrationUserOuncesToday.innerText = hydrationData.find(hydration => {
+          //   return hydration.userID === user.id && hydration.date === todayDate;
+          // }).numOunces;
+          //
+          // hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+          //
+          // hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
+            //   return hydration.userID === user.id && hydration.date === todayDate;
+            // }).numOunces / 8;
+            
 // starting code
 // sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(todayDate);
 //
