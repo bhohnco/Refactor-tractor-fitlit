@@ -154,9 +154,6 @@ describe('UserRepository', function() {
     expect(userRepository.getWorstSleepers("2019/06/15", sleepData)).to.equal(1);
   });
 
-
-
-
   describe('calculateAverageActivity', function() {
 
     it('should have a method that calculates average number of stairs for users', function() {

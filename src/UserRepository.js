@@ -128,7 +128,7 @@ export default UserRepository;
   //   })
   //   let sumOfMinutesActive = allUsersMinutesActiveCount.reduce((minutesActiveSum, activityCollection) => {
   //     activityCollection.forEach(activity => {
-  //       minutesActiveSum += activity.minutesActive
+  //       minutesActiveSum += activity.todayDate
   //     })
   //     return minutesActiveSum;
   //   }, 0);

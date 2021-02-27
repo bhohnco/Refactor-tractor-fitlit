@@ -262,7 +262,7 @@ function sleepToday() {
 function stairAveElements() {
   stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1) * 12).toFixed(0);
   stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1);
-  stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageStairs(todayDate) / 12).toFixed(1);
+  stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageActivity(todayDate, 'flightsOfStairs') / 12).toFixed(1);
 }
 
 function flightsTodayElement() {
@@ -306,9 +306,9 @@ function stepAct() {
 }
 
 function stepFriendElements() {
-  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageMinutesActive(todayDate);
+  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'todayDate')
   stepsFriendAverageStepGoal.innerText = `${userRepository.calculateAverageStepGoal()}`;
-  stepsFriendStepsAverageToday.innerText = userRepository.calculateAverageSteps(todayDate);
+  stepsFriendStepsAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'steps');
   user.findFriendsTotalStepsForWeek(userRepository.users, todayDate);
 }
 
@@ -406,6 +406,9 @@ function showInfo() {
 }
 
 // ---notes---
+// listItemKey go's in as a string
+// calculateAverageActivity(date, listItemKey)
+
   // userkey and objectKey go in as strings.
   // calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
 
