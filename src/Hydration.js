@@ -28,19 +28,24 @@ class Hydration extends User {
     }
 
   }   
+ 
 
   addDailyOunces(date) {
-    const dataSet = this.parentUser.hydrationData
-    const startingDateObj = dataSet.find(hydration => hydration.date === date)
-    const filteredHydrationData = 
-    dataSet.filter(hydration => {
-      if ((dataSet.indexOf(hydration) - dataSet.indexOf(startingDateObj) <= 7)) {
-        const newObj = {};
-        newObj[hydration.date] = hydration.ounces
-        return newObj;
-      }
+    let dataSet = this.parentUser.hydrationData;
+    let sortedData = dataSet.sort((a, b) => {
+      return b.date - a.date
     })
-    return this.getSumByDate(filteredHydrationData, 'ounces', 7)
+    let startingDateIndex = 
+    sortedData.findIndex(hydration => hydration.date === date);
+    let day1 = sortedData[startingDateIndex + 6];
+    let day2 = sortedData[startingDateIndex + 5];
+    let day3 = sortedData[startingDateIndex + 4];
+    let day4 = sortedData[startingDateIndex + 3];
+    let day5 = sortedData[startingDateIndex + 2];
+    let day6 = sortedData[startingDateIndex + 1];
+    let day7 = sortedData[startingDateIndex]
+    let lastWeek = [day7, day6, day5, day4, day3, day2, day1]
+    return lastWeek;
   }
 }
 
