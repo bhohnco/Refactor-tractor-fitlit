@@ -121,7 +121,7 @@ class User extends UserRepository {
   // }
 
   findClimbingRecord() {
-    return this.activityRecord.sort((a, b) => {
+    return this.activityData.sort((a, b) => {
       return b.flightsOfStairs - a.flightsOfStairs;
     })[0].flightsOfStairs;
   }
@@ -133,7 +133,7 @@ class User extends UserRepository {
   }
 
   calculateDailyCalories(date) {
-    let totalMinutes = this.activityRecord.filter(activity => {
+    let totalMinutes = this.activityData.filter(activity => {
       return activity.date === date
     }).reduce((sumMinutes, activity) => {
       return sumMinutes += activity.minutesActive
@@ -142,7 +142,7 @@ class User extends UserRepository {
   }
 
   updateActivities(activity) {
-    this.activityRecord.unshift(activity);
+    this.activityData.unshift(activity);
     if (activity.numSteps >= this.dailyStepGoal) {
       this.accomplishedDays.unshift(activity.date);
     }
@@ -159,9 +159,9 @@ class User extends UserRepository {
   }
 
   calculateTotalStepsThisWeek(todayDate) {
-    this.totalStepsThisWeek = (this.activityRecord.reduce((sum, activity) => {
-      let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
-      if (index <= this.activityRecord.indexOf(activity) && this.activityRecord.indexOf(activity) <= (index + 6)) {
+    this.totalStepsThisWeek = (this.activityData.reduce((sum, activity) => {
+      let index = this.activityData.indexOf(this.activityData.find(activity => activity.date === todayDate));
+      if (index <= this.activityData.indexOf(activity) && this.activityData.indexOf(activity) <= (index + 6)) {
         sum += activity.steps;
       }
       return sum;
@@ -170,9 +170,9 @@ class User extends UserRepository {
 
   findTrendingStepDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityRecord.length; i++) {
-      if (this.activityRecord[i + 1] && this.activityRecord[i].steps > this.activityRecord[i + 1].steps) {
-        positiveDays.unshift(this.activityRecord[i].date);
+    for (var i = 0; i < this.activityData.length; i++) {
+      if (this.activityData[i + 1] && this.activityData[i].steps > this.activityData[i + 1].steps) {
+        positiveDays.unshift(this.activityData[i].date);
       } else if (positiveDays.length > 2) {
         this.trendingStepDays.push(`Your most recent positive step streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];

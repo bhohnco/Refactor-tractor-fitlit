@@ -28,7 +28,7 @@ class UserRepository {
   }
   calculateAverageSteps(date) {
     let allUsersStepsCount = this.users.map(user => {
-      return user.activityRecord.filter(activity => {
+      return user.activityData.filter(activity => {
         return activity.date === date;
       });
     })
@@ -56,7 +56,7 @@ class UserRepository {
   }
   calculateAverageMinutesActive(date) {
     let allUsersMinutesActiveCount = this.users.map(user => {
-      return user.activityRecord.filter(activity => {
+      return user.activityData.filter(activity => {
         return activity.date === date;
       });
     })
