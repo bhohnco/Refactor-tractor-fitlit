@@ -4,14 +4,12 @@ class Hydration extends User {
     super(userData);
     this.date = data.date;
     this.ounces = data.numOunces;
-    this.drink(userRepository);
+    this.parentUser = userRepository.getUser(this.id)
+    this.updateHydration(this.parentUser);
   }
-  drink(userRepo) {
-    const parentUser = userRepo.users.find(user => {
-      return user.id === this.id;
-    })
-    this.updateHydration(parentUser);
-  }
+  // drink() {
+  //   this.updateHydration(this.parentUser);
+  // }
 
   updateHydration(user) {
     const hydrationDataCheck = 
@@ -35,14 +33,16 @@ class Hydration extends User {
   }   
 
   addDailyOunces(date) {
-    this.addDailyData()
-    return this.ouncesRecord.reduce((sum, record) => {
-      let amount = record[date];
-      if (amount) {
-        sum += amount
+    const filteredHydrationData = 
+    this.parentUser.hydrationData.filter(hydration => {
+      if (hydration.date > date) {
+        const newObj = {};
+        newObj[hydration.date] = hydration.ounces
+        return newObj;
       }
-      return sum
-    }, 0)
+    })
+    console.log()
+    return this.getSumByDate(filteredHydrationData, date, 7)
   }
 }
 
