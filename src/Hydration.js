@@ -4,13 +4,8 @@ class Hydration extends User {
     super(userData);
     this.date = data.date;
     this.ounces = data.numOunces;
-    this.drink(userRepository);
-  }
-  drink(userRepo) {
-    const parentUser = userRepo.users.find(user => {
-      return user.id === this.id;
-    })
-    this.updateHydration(parentUser);
+    this.parentUser = userRepository.getUser(this.id)
+    this.updateHydration(this.parentUser);
   }
 
   updateHydration(user) {
@@ -33,16 +28,24 @@ class Hydration extends User {
     }
 
   }   
+ 
 
   addDailyOunces(date) {
-    this.addDailyData()
-    return this.ouncesRecord.reduce((sum, record) => {
-      let amount = record[date];
-      if (amount) {
-        sum += amount
-      }
-      return sum
-    }, 0)
+    let dataSet = this.parentUser.hydrationData;
+    let sortedData = dataSet.sort((a, b) => {
+      return b.date - a.date
+    })
+    let startingDateIndex = 
+    sortedData.findIndex(hydration => hydration.date === date);
+    let day1 = sortedData[startingDateIndex + 6];
+    let day2 = sortedData[startingDateIndex + 5];
+    let day3 = sortedData[startingDateIndex + 4];
+    let day4 = sortedData[startingDateIndex + 3];
+    let day5 = sortedData[startingDateIndex + 2];
+    let day6 = sortedData[startingDateIndex + 1];
+    let day7 = sortedData[startingDateIndex]
+    let lastWeek = [day7, day6, day5, day4, day3, day2, day1]
+    return lastWeek;
   }
 }
 

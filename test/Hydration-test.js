@@ -34,6 +34,9 @@ describe.only('Hydration', function() {
   it('should have an amount of ounces drank', function() {
     expect(hydrate2.ounces).to.equal(75);
   });
+  it('addDailyOunces should show the last week of water', function() {
+    expect(hydrate2.addDailyOunces("2019/06/15")).to.equal(166);
+  });
   describe('drink', function () {
     it('should update the average number of ounces over all time', function() {
       hydrate2.updateHydration(user2);

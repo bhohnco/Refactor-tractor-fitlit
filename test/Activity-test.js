@@ -4,8 +4,10 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
 describe('Activity', function() {
-  let activity;
-  let user;
+  let activity1;
+  let activity2;
+  let user1;
+  let user2;
   let userRepository;
   beforeEach(() => {
     user1 = new User({
@@ -37,14 +39,14 @@ describe('Activity', function() {
     })
     userRepository = new UserRepository();
     userRepository.users.push(user1, user2);
-    activity1 = new Activity({
+    activity1 = new Activity(user1, {
       "userID": 1,
       "date": "2019/06/15",
       "numSteps": 3684,
       "minutesActive": 140,
       "flightsOfStairs": 16
     }, userRepository);
-    activity2 = new Activity({
+    activity2 = new Activity(user2, {
       "userID": 2,
       "date": "2019/06/20",
       "numSteps": 2856,
@@ -58,9 +60,7 @@ describe('Activity', function() {
   it('should be an instance of activity', function() {
     expect(activity1).to.be.an.instanceof(Activity);
   });
-  it('should hold a userId', function() {
-    expect(activity2.userId).to.equal(2);
-  });
+
   it('should hold a date', function() {
     expect(activity1.date).to.equal("2019/06/15");
   });
@@ -80,7 +80,7 @@ describe('Activity', function() {
     expect(activity2.reachedStepGoal).to.equal(null);
   });
   it('doActivity should add activities to user record', function() {
-    expect(user1.activityRecord.length).to.equal(1);
+    expect(user1.activityData.record.length).to.equal(1);
   });
   it('should have a method that calculate miles walked', function() {
     expect(activity1.calculateMiles(userRepository)).to.equal('3.0');
@@ -95,4 +95,8 @@ describe('Activity', function() {
       expect(activity2.reachedStepGoal).to.equal(true);
     });
   });
+  it('updateAccomplishedDays should create an array of good days', function() {
+    activity2.updateActivities(user2);
+    expect(user2.activityData.accomplishedDays.length).to.equal(1);
+  })
 });
