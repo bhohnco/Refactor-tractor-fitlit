@@ -62,7 +62,6 @@ class UserRepository {
     return this.users.filter(user => {
       console.log(user)
       return user.calculateAverageThisWeek(date, 'sleepQualityRecord', 'quality', 1);
-      // return user.calculateAverageQualityThisWeek(date) > 3;
     })
   }
 
