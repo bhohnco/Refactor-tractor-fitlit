@@ -259,12 +259,9 @@ function sleepToday() {
 }
 
 function stairAveElements() {
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1) * 12).toFixed(0);
+  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1);
   stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageStairs(todayDate) / 12).toFixed(1);
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
 }
 
 function flightsTodayElement() {
