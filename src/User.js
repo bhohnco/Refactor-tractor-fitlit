@@ -51,11 +51,6 @@ class User extends UserRepository {
   calculateTotalStepsThisWeek(date) {
     this.totalStepsThisWeek = 
     this.getSumByDate(this.activityData.record, 'steps', 7);
-    // console.log(this.totalStepsThisWeek)
-    // (this.activityRecord.reduce((sum, activity) => {
-    // let index = this.activityRecord.indexOf(this.activityRecord.find(activity => activity.date === todayDate));
-    // if (index <= this.activityRecord.indexOf(activity) && this.activityRecord.indexOf(activity) <= (index + 6)) {
-    // sum += activity.steps;
   }
   getSumByDate(dataSet, prop, limit = dataSet.length) {
     return dataSet.reduce((sum, dataItem, index) => {
