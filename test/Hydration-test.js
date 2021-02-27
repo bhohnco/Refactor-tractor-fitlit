@@ -5,7 +5,7 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 import hydrationTestData from './Hydration-test-data'
 
-describe.only('Hydration', function() {
+describe('Hydration', function() {
   let user1;
   let user2;
   let hydrate1;

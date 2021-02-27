@@ -4,8 +4,10 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
 describe('Activity', function() {
-  let activity;
-  let user;
+  let activity1;
+  let activity2;
+  let user1;
+  let user2;
   let userRepository;
   beforeEach(() => {
     user1 = new User({
@@ -37,14 +39,14 @@ describe('Activity', function() {
     })
     userRepository = new UserRepository();
     userRepository.users.push(user1, user2);
-    activity1 = new Activity({
+    activity1 = new Activity(user1, {
       "userID": 1,
       "date": "2019/06/15",
       "numSteps": 3684,
       "minutesActive": 140,
       "flightsOfStairs": 16
     }, userRepository);
-    activity2 = new Activity({
+    activity2 = new Activity(user2, {
       "userID": 2,
       "date": "2019/06/20",
       "numSteps": 2856,
