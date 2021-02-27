@@ -185,20 +185,13 @@ function updateTrendingStepDays() {
 }
 
 function sortHydroDate() {
-  let sortedHydrationDataByDate = user.hydrationData.sort((a, b) => {
-    if (Object.keys(a)[0] > Object.keys(b)[0]) {
-      return -1;
-    }
-    if (Object.keys(a)[0] < Object.keys(b)[0]) {
-      return 1;
-    }
-    return 0;
-  });
-  for (var i = 0; i < dailyOz.length; i++) {
-    const matchingHydrationInst =
-    hydrationData.find(datasetObj =>
-      datasetObj.date === Object.keys(sortedHydrationDataByDate[i])[0]);
-    // dailyOz[i].innerText =  .addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
+  let sortedHydrationDataByDate = user.hydrationData[0].addDailyOunces(todayDate)
+ 
+  
+  for (var i = 0; i < sortedHydrationDataByDate.length - 1; i++) {
+   
+    dailyOz[i].innerText =  
+    sortedHydrationDataByDate[i].ounces;
   }
 }
 
@@ -210,17 +203,17 @@ function userElements() {
 }
 
 function hydroElements() {
-  let hydroToday =  hydrationData.find(hydration => {
-    hydration.userID === user.id && hydration.date === todayDate;
-    return hydration;
-  })
-  hydrationUserOuncesToday.innerText = hydroToday.ounces
-  hydrationFriendOuncesToday.innerText = user.calculateAverageDailyWater(todayDate);
-  let hydroFriend = hydrationData.find(hydration => {
-    hydration.userID === user.id && hydration.date === todayDate;
+  // let hydroToday =  hydrationData.find(hydration => {
+  //   hydration.userID === user.id && hydration.date === todayDate;
+  //   return hydration;
+  // })
+  hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+  let hydroUser = user.hydrationData.find(hydration => {
+    hydration.id === user.id && hydration.date === todayDate;
     return hydration
   })
-  hydrationInfoGlassesToday.innerText = hydroFriend.ounces
+  hydrationUserOuncesToday.innerText = hydroUser.ounces
+  hydrationInfoGlassesToday.innerText = (hydroUser.ounces / 8).toFixed(0);
 }
 
 function sleepElements() {
@@ -237,31 +230,29 @@ function sleepFriendsLongest() {
 }
 
 function sleepFriendsWorst() {
-  // let worst = userRepository.users.find(user => {
-  //   return user.id === userRepository.getWorstSleepers(todayDate, sleepData)
-  // }).getFirstName();
-  // sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+  let worst = userRepository.users.find(user => {
+    return user.id === userRepository.getWorstSleepers(todayDate, sleepData)
+  }).getFirstName();
 }
 
 function sleepQToday() {
-  let sleepQToday = sleepData.find(sleep => {
-    sleep.userId === user.id && sleep.date === todayDate;
-    return sleep;
+  let sleepQToday = user.sleepQualityRecord.find(sleep => {
+    return sleep.date === todayDate;
   })
-  sleepInfoQualityToday.innerText = sleepQToday.sleepQuality;
+  sleepInfoHoursAverageAlltime.innerText = user.hoursSleptAverage;
+  sleepInfoQualityToday.innerText = sleepQToday.quality;
 }
 
 function sleepToday() {
-  let sleepHrToday = sleepData.find(sleep => {
-    sleep.userId === user.id && sleep.date === todayDate;
-    return sleep;
+  let sleepHrToday = user.sleepHoursRecord.find(sleep => {
+    return sleep.date === todayDate;
   })
-  sleepUserHoursToday.innerText = sleepHrToday.hoursSlept;
+  sleepUserHoursToday.innerText = sleepHrToday.hours;
 }
 
 function stairAveElements() {
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1) * 12).toFixed(0);
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityData', 'flightsOfStairs', 1) * 12).toFixed(0);
+  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'flightsOfStairs', 1);
   stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageActivity(todayDate, 'flightsOfStairs') / 12).toFixed(1);
 }
 
@@ -282,32 +273,32 @@ function stairsTodayElement() {
 }
 
 function stepElements() {
-  const calculatedMiles = user.activityData.find(activity => {
-    return (activity.date === todayDate && activity.id === user.id)
-  });
+  const calculatedMiles = 
+  user.activityData.find(activity => activity.date === todayDate);
   stepsInfoMilesWalkedToday.innerText = calculatedMiles.calculateMiles() 
   stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'minutesActive', 0);
   stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'steps', 0);
 }
 
 function stepMinToday() {
-  let minAct =  stepsInfoActiveMinutesToday.innerText = activityData.find(activity => {
-    activity.userID === user.id && activity.date === todayDate;
-    return activity
+  let minAct =  stepsInfoActiveMinutesToday.innerText = 
+  user.activityData.find(activity => {
+    return activity.date === todayDate;
   })
   stepsInfoActiveMinutesToday.innerText = minAct.minutesActive;
 }
 
 function stepAct() {
-  let stepAct = activityData.find(activity => {
-    activity.userID === user.id && activity.date === todayDate;
+  let stepAct = user.activityData.find(activity => {
+    activity.date === todayDate;
     return activity
   })
+  console.log(user.activityData)
   stepsUserStepsToday.innerText = stepAct.steps;
 }
 
 function stepFriendElements() {
-  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'todayDate')
+  stepsFriendActiveMinutesAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'minutesActive')
   stepsFriendAverageStepGoal.innerText = `${userRepository.calculateAverageStepGoal()}`;
   stepsFriendStepsAverageToday.innerText = userRepository.calculateAverageActivity(todayDate, 'steps');
   user.findFriendsTotalStepsForWeek(userRepository.users, todayDate);
