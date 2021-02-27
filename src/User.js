@@ -16,15 +16,10 @@ class User extends UserRepository {
     this.sleepQualityAverage = 0;
     this.sleepHoursRecord = [];
     this.sleepQualityRecord = [];
-    this.activityData = {
-      accomplishedDays: [],
-      trendingStepDays: [],
-      trendingStairsDays: [],
-      record: []
-    };
-    // this.accomplishedDays = [];
-    // this.trendingStepDays = [];
-    // this.trendingStairsDays = [];
+    this.activityData = []
+    this.accomplishedDays = [];
+    this.trendingStepDays = [];
+    this.trendingStairsDays = [];
     this.friendsNames = [];
     this.friendsActivityRecords = []
   }
@@ -187,9 +182,9 @@ class User extends UserRepository {
 
   findTrendingStairsDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityRecord.length; i++) {
-      if (this.activityRecord[i + 1] && this.activityRecord[i].flightsOfStairs > this.activityRecord[i + 1].flightsOfStairs) {
-        positiveDays.unshift(this.activityRecord[i].date);
+    for (var i = 0; i < this.activityData.length; i++) {
+      if (this.activityData[i + 1] && this.activityData[i].flightsOfStairs > this.activityData[i + 1].flightsOfStairs) {
+        positiveDays.unshift(this.activityData[i].date);
       } else if (positiveDays.length > 2) {
         this.trendingStairsDays.push(`Your most recent positive climbing streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];

@@ -14,15 +14,15 @@ class Activity extends User {
   
   updateActivities() {
     const activityDataCheck = 
-    this.activityData.record.find(hydrationObj => hydrationObj[this.date]);
+    this.activityData.find(hydrationObj => hydrationObj[this.date]);
     
     if (!activityDataCheck) {
-      this.parentUser.activityData.record.unshift(this);
+      this.parentUser.activityData.unshift(this);
     }
 
     if (this.steps >= this.parentUser.dailyStepGoal &&
-      !this.parentUser.activityData.accomplishedDays.includes(this.date)) {
-      this.parentUser.activityData.accomplishedDays.unshift(this.date);
+      !this.parentUser.accomplishedDays.includes(this.date)) {
+      this.parentUser.accomplishedDays.unshift(this.date);
     }
 
   }
