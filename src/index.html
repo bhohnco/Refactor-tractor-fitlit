@@ -8,6 +8,23 @@
   </head>
   <body>
     <header>
+      <button type='button' name='button' id='add-activity-button' aria-label="Add user data to profile"></button>
+      <section class='hide' id='user-activity-dropdown'>
+        <div class = 'top-section'>
+          <h5 id = "add-activity-data">Add New Activity Data</h5>
+          <p class='white-text'>User id: <span class="user-id"></span></p>
+          <input type ='date' class='date-input' name='date'></input>
+        </div>
+        <section class='user-data-inputs'>
+        <h5 id='dropdown-name'></h5>
+        <p class='dropdown-p' id='dropdown-email'></p>
+        <p class='dropdown-p' id='dropdown-goal'></p>
+        <br/>
+        <p class='dropdown-p' id='dropdown-friends'>FRIENDS TOTAL STEPS THIS WEEK</p>
+        <div id='dropdown-friends-steps-container'></div>
+        </section>
+        </section>
+
       <h1><span id='header-name'></span>FITLIT</h1>
       <button type='button' name='button' id='profile-button' aria-label="See user profile"></button>
       <section class='hide' id='user-info-dropdown'>
