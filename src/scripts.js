@@ -36,6 +36,7 @@ const hydrationInfoGlassesToday = document.querySelector('#hydration-info-glasse
 const hydrationMainCard = document.querySelector('#hydration-main-card');
 const hydrationUserOuncesToday = document.querySelector('#hydration-user-ounces-today');
 const mainPage = document.querySelector('main');
+const addUserActivity = document.querySelector('#add-activity-button')
 const profileButton = document.querySelector('#profile-button');
 const sleepCalendarCard = document.querySelector('#sleep-calendar-card');
 const sleepCalendarHoursAverageWeekly = document.querySelector('#sleep-calendar-hours-average-weekly');
@@ -76,6 +77,7 @@ const stepsTrendingButton = document.querySelector('.steps-trending-button');
 const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
 const trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
 const trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
+const userActivityDropdown = document.querySelector('#user-activity-dropdown');
 const userInfoDropdown = document.querySelector('#user-info-dropdown');
 const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
 
@@ -155,8 +157,8 @@ function stairsCardBuild() {
 
 function hiddenOnBuild() {
   findFrirnds()
-  updateTrendingStairsDays()
-  updateTrendingStepDays()
+  // updateTrendingStairsDays()
+  // updateTrendingStepDays()
 }
 
 function findFrirnds() {
@@ -172,17 +174,22 @@ function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
 }
 
-function updateTrendingStairsDays() {
-  // is returning null think it is the  user.findTrendingStairsDays() method. may also
-  user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+function showUserDropdown() {
+  userActivityDropdown.classList.toggle('hide');
 }
 
-function updateTrendingStepDays() {
-  // is returning null think it is the user.findTrendingStepDays() method. may also be date
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-}
+
+// function updateTrendingStairsDays() {
+//   // is returning null think it is the  user.findTrendingStairsDays() method. may also
+//   user.findTrendingStairsDays();
+//   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
+// }
+//
+// function updateTrendingStepDays() {
+//   // is returning null think it is the user.findTrendingStepDays() method. may also be date
+//   user.findTrendingStepDays();
+//   trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
+// }
 
 function sortHydroDate() {
   let sortedHydrationDataByDate = user.hydrationData.sort((a, b) => {
@@ -338,17 +345,8 @@ function stepFriendsPara() {
 
 // all the events
 mainPage.addEventListener('click', showInfo);
+addUserActivity.addEventListener('click', showUserDropdown)
 profileButton.addEventListener('click', showDropdown);
-stairsTrendingButton.addEventListener('click', updateTrendingStairsDays());
-stepsTrendingButton.addEventListener('click', updateTrendingStepDays());
-stairsTrendingButton.addEventListener('click', function() {
-  user.findTrendingStairsDays();
-  trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
-});
-stepsTrendingButton.addEventListener('click', function() {
-  user.findTrendingStepDays();
-  trendingStepsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStepDays[0]}</p>`;
-});
 
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {

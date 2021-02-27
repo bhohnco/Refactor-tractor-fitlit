@@ -3,7 +3,6 @@ $step-color: #F5634B;
 $hydration-color: #54C6BE;
 $stairs-color: #8975B2;
 $sleep-color:#FBD089;
-$yellow-text:#F8BA00;
 
 @mixin flex-container($justify-content) {
   display: flex;
@@ -13,6 +12,19 @@ $yellow-text:#F8BA00;
 @mixin height-and-width($height, $width) {
   height: $height;
   width: $width;
+}
+
+@mixin header-button($float, $margin-left, $margin-right) {
+  background-position: center;
+  background-size: 5.6vw;
+  border: none;
+  display: inline;
+  float: $float;
+  height: 5.6vw;
+  margin-left: $margin-right;
+  margin-right: .5vw;
+  margin-top: 1.6vw;
+  width: 5.6vw;
 }
 
 @mixin card-container($background-color, $grid-area) {
@@ -29,3 +41,10 @@ $yellow-text:#F8BA00;
   justify-content: center;
 }
 
+@mixin card-header($font-size) {
+  display: inline;
+  font-family: 'Work Sans', sans-serif;
+  font-size: $font-size;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+}

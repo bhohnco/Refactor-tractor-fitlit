@@ -11,20 +11,37 @@
       <button type='button' name='button' id='add-activity-button' aria-label="Add user data to profile"></button>
       <section class='hide' id='user-activity-dropdown'>
         <div class = 'top-section'>
-          <h5 id = "add-activity-data">Add New Activity Data</h5>
+          <h5 id = 'add-activity-data'>Add New Activity</h5>
           <p class='white-text'>User id: <span class="user-id"></span></p>
-          <input type ='date' class='date-input' name='date'></input>
+          <input type='date' class='date-input' name='date'/>
         </div>
         <section class='user-data-inputs'>
-        <h5 id='dropdown-name'></h5>
-        <p class='dropdown-p' id='dropdown-email'></p>
-        <p class='dropdown-p' id='dropdown-goal'></p>
-        <br/>
-        <p class='dropdown-p' id='dropdown-friends'>FRIENDS TOTAL STEPS THIS WEEK</p>
-        <div id='dropdown-friends-steps-container'></div>
+        <div class='sleep-dropdown'>
+          <h3 class='dropdown-option'>Sleep</h3>
+          <p class='dropdown-p'>Hours slept</p>
+          <input type='number' class='hours-slept-data-input' required min='0' max='24'/>
+          <p class='dropdown-p'>Sleep Quality</p>
+          <input type='number' class='sleep-quality-data-input' required min='0' max='5'/>
+          <button type='button' name='button' class='add-sleep-data' aria-label='Add user sleep data to profile'>Add Sleep Data</button>
+        </div>
+          <div class='activity-dropdown'>
+            <h3 class='dropdown-option'>Activity</h3>
+            <p class='dropdown-p'>Number of Steps</p>
+            <input type='number' class='number-steps-data-input' required min='0'>
+            <p class='dropdown-p'>Minutes Active</p>
+            <input type='number' class='minutes-active-data-input' required min='0' max='1000'>
+            <p class='dropdown-p'>Flights of Stairs</p>
+            <input type='number' class='flights-stairs-data-input' required min='0'>
+            <button type='button' name='button' class='add-activity-data' aria-label='Add user activity data to profile'>Add Activity Data</button>
+          </div>
+          <div class='hydration-dropdown'>
+            <h3 class='dropdown-option'>Hydration</h3>
+            <p class='dropdown-p'>Number of Ounces</p>
+            <input type='number' class='number-ounces-data-input' required min=''>
+            <button type='button' name='button' class='add-hydration-data' aria-label='Add user hydration data to profile'>Add Hydration Data</button>
+          </div>
         </section>
         </section>
-
       <h1><span id='header-name'></span>FITLIT</h1>
       <button type='button' name='button' id='profile-button' aria-label="See user profile"></button>
       <section class='hide' id='user-info-dropdown'>
@@ -47,7 +64,6 @@
           </div>
           <h2 id='steps-user-steps-today'>X</h2>
           <div class='main-card-top-row'>
-            <button type='button' name='button' class='trending-button steps-trending-button' aria-label="See trending steps"></button>
             <h3>STEPS TODAY</h3>
             <button type='button' name='button' class='calendar-button steps-calendar-button' aria-label="See steps calendar"></button>
           </div>
@@ -76,11 +92,6 @@
           <div class='card-data-line'>
             <p>ALL USERS' AVERAGE STEP GOAL:</p>
             <h4 id='steps-friend-average-step-goal'></h4>
-          </div>
-        </section>
-        <section class='trending-card hide' id='steps-trending-card'>
-          <button type='button' name='button' class='go-back-button steps-go-back-button' aria-label="Go back button"></button>
-          <div class='card-data-line trending-steps-phrase-container'>
           </div>
         </section>
         <section class='calendar-card hide' id='steps-calendar-card'>
@@ -159,7 +170,6 @@
           </div>
           <h2 id='stairs-user-stairs-today'></h2>
           <div class='main-card-top-row'>
-            <button type='button' name='button' class='trending-button stairs-trending-button' aria-label="See trending Stairs"></button>
             <h3>STAIRS TODAY</h3>
             <button type='button' name='button' class='calendar-button stairs-calendar-button' aria-label="See stairs calendar"></button>
           </div>
@@ -176,11 +186,6 @@
           <div class='card-data-line'>
             <p>ALL USERS' AVERAGE FLIGHTS TODAY</p>
             <h4 id='stairs-friend-flights-average-today'></h4>
-          </div>
-        </section>
-        <section class='trending-card hide' id='stairs-trending-card'>
-          <button type='button' name='button' class='go-back-button stairs-go-back-button' aria-label="Go back button"></button>
-          <div class='card-data-line trending-stairs-phrase-container'>
           </div>
         </section>
         <section class='calendar-card hide' id='stairs-calendar-card'>
