@@ -195,8 +195,8 @@ function sortHydroDate() {
     return 0;
   });
   for (var i = 0; i < dailyOz.length; i++) {
-    const matchingHydrationInst = 
-    hydrationData.find(datasetObj => 
+    const matchingHydrationInst =
+    hydrationData.find(datasetObj =>
       datasetObj.date === Object.keys(sortedHydrationDataByDate[i])[0]);
     // dailyOz[i].innerText =  .addDailyOunces(Object.keys(sortedHydrationDataByDate[i])[0])
   }
@@ -224,8 +224,8 @@ function hydroElements() {
 }
 
 function sleepElements() {
-  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(todayDate);
-  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageQualityThisWeek(todayDate);
+  sleepCalendarHoursAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepHoursRecord', 'hours', 1);
+  sleepCalendarQualityAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepQualityRecord', 'quality', 1);
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
 }
 
@@ -259,12 +259,9 @@ function sleepToday() {
 }
 
 function stairAveElements() {
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
+  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1) * 12).toFixed(0);
+  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'flightsOfStairs', 1);
   stairsFriendFlightsAverageToday.innerText = (userRepository.calculateAverageStairs(todayDate) / 12).toFixed(1);
-  stairsCalendarFlightsAverageWeekly.innerText = user.calculateAverageFlightsThisWeek(todayDate);
-  stairsCalendarStairsAverageWeekly.innerText = (user.calculateAverageFlightsThisWeek(todayDate) * 12).toFixed(0);
 }
 
 function flightsTodayElement() {
@@ -287,8 +284,8 @@ function stepElements() {
   stepsInfoMilesWalkedToday.innerText = user.activityRecord.find(activity => {
     return (activity.date === todayDate && activity.userId === user.id)
   }).calculateMiles(userRepository);
-  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageMinutesActiveThisWeek(todayDate);
-  stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageStepsThisWeek(todayDate);
+  stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'minutesActive', 0);
+  stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityRecord', 'steps', 0);
 }
 
 function stepMinToday() {
@@ -406,6 +403,10 @@ function showInfo() {
     flipCard(event.target.parentNode, sleepMainCard);
   }
 }
+
+// ---notes---
+  // userkey and objectKey go in as strings.
+  // calculateAverageThisWeek(todayDate, userKey, objectKey, toFixNum)
 
 // -----OLD STUFF!!!----
 // old file paths

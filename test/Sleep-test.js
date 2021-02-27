@@ -5,7 +5,9 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
 describe('Sleep', function() {
-  let sleep;
+  let sleep1;
+  let sleep2;
+  let sleep3;
   let user1;
   let user2;
   let userRepository;
@@ -39,25 +41,26 @@ describe('Sleep', function() {
     })
     userRepository = new UserRepository();
     userRepository.users.push(user1, user2);
-    sleep1 = new Sleep({
+    sleep1 = new Sleep(user1, {
       "userID": 1,
       "date": "2019/06/15",
       "hoursSlept": 6.1,
       "sleepQuality": 2.2
     }, userRepository);
-    sleep2 = new Sleep({
+    sleep2 = new Sleep(user2, {
       "userID": 2,
       "date": "2019/06/25",
       "hoursSlept": 7.3,
       "sleepQuality": 3.2
     }, userRepository);
-    sleep3 = new Sleep({
+    sleep3 = new Sleep(user1, {
       "userID": 1,
       "date": "2019/07/17",
       "hoursSlept": 9.3,
       "sleepQuality": 1.4
     }, userRepository);
   });
+
   it('should be a function', function() {
     expect(Sleep).to.be.a('function');
   });
