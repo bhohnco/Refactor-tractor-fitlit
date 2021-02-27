@@ -3,7 +3,7 @@ import Activity from '../src/Activity';
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 
-describe.only('Activity', function() {
+describe('Activity', function() {
   let activity1;
   let activity2;
   let user1;
