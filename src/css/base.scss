@@ -1,6 +1,31 @@
-/* This is an example of using Sass, otherwise plain CSS works too*/
-$primary-background: pink;
+$primary-background: #1F1F1F;
+$step-color: #F5634B;
+$hydration-color: #54C6BE;
+$stairs-color: #8975B2;
+$sleep-color:#FBD089;
+$yellow-text:#F8BA00;
 
-body {
-  background-color: $primary-background;
+@mixin flex-container($justify-content) {
+  display: flex;
+  justify-content: $justify-content;
 }
+
+@mixin height-and-width($height, $width) {
+  height: $height;
+  width: $width;
+}
+
+@mixin card-container($background-color, $grid-area) {
+  background-color: $background-color;
+  grid-area:$grid-area;
+  margin: 0.5vw;
+}
+
+@mixin main-card-styling ($height) {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: $height;
+  justify-content: center;
+}
+

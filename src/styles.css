@@ -316,3 +316,12 @@ main {
 .yellow-text {
   color: #F8BA00;
 }
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 414px) {
+  }  .hide {
+    display: none;
+  }
+}
