@@ -49,19 +49,18 @@ class User extends UserRepository {
   // }, 0));
   // }
   calculateTotalStepsThisWeek(date) {
-    this.totalStepsThisWeek = 
+    this.totalStepsThisWeek =
     this.getSumByDate(this.activityData.record, 'steps', 7);
   }
   getSumByDate(dataSet, prop, limit = dataSet.length) {
     return dataSet.reduce((sum, dataItem, index) => {
-      if (index <= dataSet.indexOf(dataItem) 
+      if (index <= dataSet.indexOf(dataItem)
       && dataSet.indexOf(dataItem) <= limit - 1) {
-        console.log(dataItem)
         sum += dataItem[prop];
       }
       return sum
     }, 0)
-  } 
+  }
   // updateActivities(activity) {
   //   this.activityRecord.unshift(activity);
   //   if (activity.numSteps >= this.dailyStepGoal) {
@@ -191,7 +190,7 @@ class User extends UserRepository {
       this.friendsNames.push(users.find(user => user.id === friend).getFirstName());
     })
   }
- 
+
 
   findFriendsTotalStepsForWeek(users, date) {
     this.friends.map(friend => {
@@ -204,6 +203,7 @@ class User extends UserRepository {
           'totalWeeklySteps': matchedFriend.totalStepsThisWeek
         })
     })
+
     this.calculateTotalStepsThisWeek(date);
     this.friendsActivityRecords.push({
       'id': this.id,

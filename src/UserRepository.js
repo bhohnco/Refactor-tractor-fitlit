@@ -51,6 +51,8 @@ class UserRepository {
   }
 
   calculateAverageDailyWater(date) {
+    console.log(this)
+    console.log(this.findDate(date, 'hydrationData'))
     let todaysDrinkers = this.findDate(date, 'hydrationData');
     let sumDrankOnDate = todaysDrinkers.reduce((sum, drinker) => {
       return sum += drinker[0].ounces;
@@ -60,7 +62,6 @@ class UserRepository {
 
   findBestSleepers(date) {
     return this.users.filter(user => {
-      console.log(user)
       return user.calculateAverageThisWeek(date, 'sleepQualityRecord', 'quality', 1);
     })
   }

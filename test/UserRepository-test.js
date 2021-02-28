@@ -4,7 +4,7 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 import Sleep from '../src/Sleep';
 
-describe('UserRepository', function() {
+describe.only('UserRepository', function() {
   let user1;
   let user2;
   let user3;
@@ -76,18 +76,18 @@ describe('UserRepository', function() {
     user3.sleepQualityAverage = 1;
     expect(userRepository.calculateAverageSleepQuality()).to.equal(3.1);
   });
-  it('should have a method that calculates friends average ounces of water', function() {
-    user1.ouncesRecord = [
+  it('should have a method that calculates all users average ounces of water', function() {
+    user1.hydrationData = [
       {"2019/06/15": 1},
       {"2019/06/15": 1},
       {"2019/06/16": 5}
     ]
-    user2.ouncesRecord = [
+    user2.hydrationData = [
       {"2019/06/15": 1},
       {"2019/06/15": 1},
       {"2019/06/16": 8}
     ]
-    user3.ouncesRecord = [
+    user3.hydrationData= [
       {"2019/06/15": 1},
       {"2019/06/15": 1},
       {"2019/06/16": 4}
@@ -95,25 +95,23 @@ describe('UserRepository', function() {
     expect(userRepository.calculateAverageDailyWater("2019/06/16")).to.equal(5)
   });
   it('should have a method that finds the best sleepers', function() {
-    sleep1 = new Sleep({
+    const sleepData = [{
       "userID": 1,
       "date": "2019/06/16",
       "hoursSlept": 6.1,
       "sleepQuality": 1000
-    }, userRepository);
-    sleep2 = new Sleep({
+    }, {
       "userID": 2,
       "date": "2019/06/15",
       "hoursSlept": 7.3,
       "sleepQuality": 500
-    }, userRepository);
-    sleep3 = new Sleep({
+    }, {
       "userID": 3,
       "date": "2019/06/15",
       "hoursSlept": 9.3,
       "sleepQuality": 1.4
-    }, userRepository);
-    expect(userRepository.findBestSleepers("2019/06/16")).to.deep.equal([user1, user2]);
+    }];
+    expect(userRepository.findBestSleepers("2019/06/16")).to.deep.equal([user1, user2, user3]);
   });
   it('should have a method that finds the longest sleepers', function() {
     const sleepData = [{
@@ -157,20 +155,20 @@ describe('UserRepository', function() {
   describe('calculateAverageActivity', function() {
 
     it('should have a method that calculates average number of stairs for users', function() {
-      user1.activityRecord = [{date: "2019/09/17", flightsOfStairs: 10}, {date: "2019/09/17", flightsOfStairs: 15}];
-      user2.activityRecord = [{date: "2019/09/16", flightsOfStairs: 8}, {date: "2019/09/17", flightsOfStairs: 4}];
+      user1.activityData = [{date: "2019/09/17", flightsOfStairs: 10}, {date: "2019/09/17", flightsOfStairs: 15}];
+      user2.activityData = [{date: "2019/09/16", flightsOfStairs: 8}, {date: "2019/09/17", flightsOfStairs: 4}];
       expect(userRepository.calculateAverageActivity("2019/09/17", 'flightsOfStairs')).to.equal(10);
     })
 
     it('should have a method that calculates average number of steps for users', function() {
-      user1.activityRecord = [{date: "2019/09/17", steps: 100}, {date: "2019/09/17", steps: 2000}];
-      user2.activityRecord = [{date: "2019/09/16", steps: 9820}, {date: "2019/09/17", steps: 234}];
+      user1.activityData = [{date: "2019/09/17", steps: 100}, {date: "2019/09/17", steps: 2000}];
+      user2.activityData = [{date: "2019/09/16", steps: 9820}, {date: "2019/09/17", steps: 234}];
       expect(userRepository.calculateAverageActivity("2019/09/17", 'steps')).to.equal(778);
     })
 
     it('should have a method that calculates average number of active minutes for users', function() {
-      user1.activityRecord = [{date: "2019/09/17", minutesActive: 100}, {date: "2019/09/17", minutesActive: 20}];
-      user2.activityRecord = [{date: "2019/09/16", minutesActive: 78}, {date: "2019/09/17", minutesActive: 12}];
+      user1.activityData = [{date: "2019/09/17", minutesActive: 100}, {date: "2019/09/17", minutesActive: 20}];
+      user2.activityData = [{date: "2019/09/16", minutesActive: 78}, {date: "2019/09/17", minutesActive: 12}];
       expect(userRepository.calculateAverageActivity("2019/09/17", 'minutesActive')).to.equal(44);
     })
 

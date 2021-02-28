@@ -172,7 +172,7 @@ function showDropdown() {
 function sortHydroDate() {
   let sortedHydrationDataByDate = user.hydrationData[0].addDailyOunces(todayDate)
   for (var i = 0; i < sortedHydrationDataByDate.length - 1; i++) {
-    dailyOz[i].innerText =  
+    dailyOz[i].innerText =
     sortedHydrationDataByDate[i].ounces;
   }
 }
@@ -185,7 +185,7 @@ function userElements() {
 }
 
 function hydroElements() {
-  hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
+  // hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
   let hydroUser = user.hydrationData.find(hydration => {
     hydration.id === user.id && hydration.date === todayDate;
     return hydration
@@ -238,15 +238,15 @@ function stairsTodayElement() {
 }
 
 function stepElements() {
-  const calculatedMiles = 
+  const calculatedMiles =
   user.activityData.find(activity => activity.date === todayDate);
-  stepsInfoMilesWalkedToday.innerText = calculatedMiles.calculateMiles() 
+  stepsInfoMilesWalkedToday.innerText = calculatedMiles.calculateMiles()
   stepsCalendarTotalActiveMinutesWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'minutesActive', 0);
   stepsCalendarTotalStepsWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'activityData', 'steps', 0);
 }
 
 function stepMinToday() {
-  let minAct =  stepsInfoActiveMinutesToday.innerText = 
+  let minAct =  stepsInfoActiveMinutesToday.innerText =
   user.activityData.find(activity => {
     return activity.date === todayDate;
   })
@@ -372,17 +372,17 @@ function showInfo() {
 // activityData.forEach(activity => {
   //   activity = new Activity(activity, userRepository);
   // });
-  
+
   // hydrationData.forEach(hydration => {
     //   hydration = new Hydration(hydration, userRepository);
     // });
-    
+
     // function updateTrendingStairsDays() {
     //   // is returning null think it is the  user.findTrendingStairsDays() method. may also
     //   userRepository.users[0].findTrendingStairsDays();
     //   trendingStairsPhraseContainer.innerHTML = `<p class='trend-line'>${user.trendingStairsDays[0]}</p>`;
     // }
-    
+
     // function updateTrendingStepDays() {
     //   // is returning null think it is the user.findTrendingStepDays() method. may also be date
     //   user.findTrendingStepDays();
@@ -405,7 +405,7 @@ function showInfo() {
           // hydrationInfoGlassesToday.innerText = hydrationData.find(hydration => {
             //   return hydration.userID === user.id && hydration.date === todayDate;
             // }).numOunces / 8;
-            
+
 // starting code
 // sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageHoursThisWeek(todayDate);
 //
