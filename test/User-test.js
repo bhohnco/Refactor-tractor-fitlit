@@ -165,9 +165,9 @@ describe('User', function() {
       let user2 = new User(activities[7][0]);
       let user3 = new User(activities[7][1]);
       let user4 = new User(activities[7][2]);
-      user2.activityRecord = [...activities[4]];
-      user3.activityRecord = [...activities[5]];
-      user4.activityRecord = [...activities[6]];
+      user2.activityData = [...activities[4]];
+      user3.activityData = [...activities[5]];
+      user4.activityData = [...activities[6]];
       let users = [user2, user3, user4];
       user.findFriendsTotalStepsForWeek(users, '2019/06/29');
       expect(user.friendsActivityRecords[0].totalWeeklySteps).to.deep.equal(734);
