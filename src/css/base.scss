@@ -21,8 +21,8 @@ $sleep-color:#FBD089;
   display: inline;
   float: $float;
   height: 5.6vw;
-  margin-left: $margin-right;
-  margin-right: .5vw;
+  margin-left: $margin-left;
+  margin-right: $margin-right;
   margin-top: 1.6vw;
   width: 5.6vw;
 }
@@ -45,6 +45,6 @@ $sleep-color:#FBD089;
   display: inline;
   font-family: 'Work Sans', sans-serif;
   font-size: $font-size;
-  font-weight: 700;
+  font-weight: 500;
   letter-spacing: 0.2em;
 }
