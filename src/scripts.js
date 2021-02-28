@@ -81,6 +81,19 @@ const userActivityDropdown = document.querySelector('#user-activity-dropdown');
 const userInfoDropdown = document.querySelector('#user-info-dropdown');
 const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
 
+const dateInput = document.querySelector(".date-input");
+const sleepHrInput = document.querySelector(".hours-slept-data-input");
+const sleepQtInput = document.querySelector(".sleep-quality-data-input");
+const addSleepButton = document.querySelector(".add-sleep-data");
+
+const stepDataInput = document.querySelector(".number-steps-data-input");
+const minutesActiveInout = document.querySelector(".minutes-active-data-input");
+const flightStairsInput = document.querySelector(".flights-stairs-data-input");
+const addActivityButton = document.querySelector(".add-activity-data");
+
+const numOuncesInput = document.querySelector(".number-ounces-data-input");
+const addHydrationButton = document.querySelector(".add-hydration-data");
+
 Promise.all([getUserData, getSleepData, getActivityData, getHydrationData])
   .then((values) => {
     buildUserRepo(values[0].userData);
@@ -116,6 +129,48 @@ function buildHydrationData(getHydrationData) {
     const matchingUser = userRepository.getUser(item.userID);
     hydrationData.push(new Hydration(matchingUser, item, userRepository))
   })
+}
+
+function addNewSleep() {
+  let fixDate = dateInput.value.replaceAll("-", "/");
+  let newData = {"userID": user.id, "date": fixDate, "hoursSlept": sleepHrInput.value, "sleepQuality": sleepQtInput.value};
+  fetch(sleepUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify(newData),
+  })
+  .then(response => console.log(response.status))
+  .catch(error => console.log(error))
+}
+
+function addActivity() {
+  let fixDate = dateInput.value.replaceAll("-", "/");
+  let newData = {"userID": user.id, "date": fixDate, "numSteps": stepDataInput.value, "minutesActive": minutesActiveInout.value, "flightsOfStairs": flightStairsInput.value};
+  fetch(activityUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify(newData),
+  })
+  .then(response => console.log(response.status))
+  .catch(error => console.log(error))
+}
+
+function addWater() {
+  let fixDate = dateInput.value.replaceAll("-", "/");
+  let newData = {"userID": user.id, "date": fixDate, "numOunces": numOuncesInput.value};
+  fetch(hydrationUrl, {
+    method: 'POST',
+    headers: {
+      'Content-Type':'application/json'
+    },
+    body: JSON.stringify(newData),
+  })
+  .then(response => console.log(response.status))
+  .catch(error => console.log(error))
 }
 
 function buildPage() {
@@ -296,8 +351,17 @@ function stepFriendsPara() {
 
 // all the events
 mainPage.addEventListener('click', showInfo);
-addUserActivity.addEventListener('click', showUserDropdown)
+addUserActivity.addEventListener('click', showUserDropdown);
 profileButton.addEventListener('click', showDropdown);
+
+addSleepButton.addEventListener('click', addNewSleep);
+addActivityButton.addEventListener('click', addActivity);
+addHydrationButton.addEventListener('click', addWater);
+
+// {“userID”: integer, “date”: string, “numSteps”: integer, “minutesActive”: integer, “flightsOfStairs”: integer}
+
+// {"userID": integer, "date": string, "numOunces": integer}
+
 
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {
