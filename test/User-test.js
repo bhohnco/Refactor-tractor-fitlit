@@ -5,7 +5,7 @@ import Activity from '../src/Activity'
 import UserRepository from '../src/UserRepository'
 import {users, activities} from './User-test-data.js'
 
-describe.only('User', function() {
+describe('User', function() {
   let user;
   let activity1;
   let activity2;
@@ -16,7 +16,7 @@ describe.only('User', function() {
     user = new User(users[0])
     userRepository.users.push(user);
     activity1 = new Activity(user, user, userRepository);
-    activity2 = new Activity(user,  user, userRepository);
+    activity2 = new Activity(user, user, userRepository);
   })
   it('should be a function', function() {
     expect(User).to.be.a('function');
@@ -159,7 +159,7 @@ describe.only('User', function() {
     user.calculateTotalStepsThisWeek('2019/06/28');
     expect(user.totalStepsThisWeek).to.equal(42);
   });
-  describe.only('findFrientsTotalStepsForWeek',() => {
+  describe('findFrientsTotalStepsForWeek',() => {
 
     it('should be able to find a friends weekly steps', function() {
       let user2 = new User(activities[7][0]);
