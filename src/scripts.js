@@ -185,7 +185,6 @@ function userElements() {
 }
 
 function hydroElements() {
-  // hydrationFriendOuncesToday.innerText = userRepository.calculateAverageDailyWater(todayDate);
   let hydroUser = user.hydrationData.find(hydration => {
     hydration.id === user.id && hydration.date === todayDate;
     return hydration
@@ -195,8 +194,8 @@ function hydroElements() {
 }
 
 function sleepElements() {
-  sleepCalendarHoursAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepHoursRecord', 'hours', 1);
-  sleepCalendarQualityAverageWeekly.innerText = user. calculateAverageThisWeek(todayDate, 'sleepQualityRecord', 'quality', 1);
+  sleepCalendarHoursAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'sleepHoursRecord', 'hours', 1);
+  sleepCalendarQualityAverageWeekly.innerText = user.calculateAverageThisWeek(todayDate, 'sleepQualityRecord', 'quality', 1);
   sleepInfoQualityAverageAlltime.innerText = user.sleepQualityAverage;
 }
 
@@ -258,7 +257,6 @@ function stepAct() {
     activity.date === todayDate;
     return activity
   })
-  console.log(user.activityData)
   stepsUserStepsToday.innerText = stepAct.steps;
 }
 

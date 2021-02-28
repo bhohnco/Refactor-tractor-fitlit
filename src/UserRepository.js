@@ -30,7 +30,6 @@ class UserRepository {
     return totalSleepQuality / this.users.length;
   }
 
-
   findDate(date, prop = 'activityData') {
     let datelist = this.users.map(user => {
       return user[prop].filter(item => {
