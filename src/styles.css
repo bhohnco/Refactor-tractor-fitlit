@@ -15,6 +15,7 @@ body {
 header {
   text-align: center;
   height: 9vw;
+  padding-top: 50px;
 }
 
 button:active {
@@ -45,6 +46,15 @@ button:active {
   z-index: 100;
 }
 
+#user-activity-dropdown {
+  color: white;
+  margin-right: 60%;
+  margin-top: -1.2%;
+  position: relative;
+  text-align: center;
+  z-index: 100;
+}
+
 .dropdown-p {
   font-size: 1.2vw;
   font-weight: 300;
@@ -60,6 +70,7 @@ h1 {
   display: inline;
   font-size: 5.4vw;
   letter-spacing: .2em;
+  padding-top: 50px;
 }
 
 h2 {
