@@ -33,7 +33,6 @@ class User extends UserRepository {
     this.totalStepsThisWeek = this.activityData.reduce((sum, activity) => {
       let index = this.activityData.findIndex(activity => activity.date === todayDate);
       if (index <= this.activityData.indexOf(activity) && this.activityData.indexOf(activity) <= (index + 6)) {
-        console.log(activity.steps)
         sum += activity.steps;
       }
       return sum;
