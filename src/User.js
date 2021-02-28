@@ -126,8 +126,6 @@ class User extends UserRepository {
     console.log(this.friends)
     this.friends.map(friend => {
       let matchedFriend = users.find(user => user.id === friend);
-      // matchedFriend.activityData = matchedFriend.activityRecord
-      // console.log(matchedFriend.activityRecord)
       matchedFriend.calculateTotalStepsThisWeek(date);
       this.friendsActivityRecords.push(
         {
