@@ -9,9 +9,9 @@ class Hydration extends User {
   }
 
   updateHydration(user) {
-    const hydrationDataCheck = 
+    const hydrationDataCheck =
     user.hydrationData.find(hydrationObj => hydrationObj[this.date]);
-    
+
     if (!hydrationDataCheck) {
       user.hydrationData.unshift(this);
       const mappedHydrationData = user.hydrationData.map(hydration => {
@@ -28,14 +28,13 @@ class Hydration extends User {
     }
 
   }   
- 
 
   addDailyOunces(date) {
     let dataSet = this.parentUser.hydrationData;
     let sortedData = dataSet.sort((a, b) => {
       return b.date - a.date
     })
-    let startingDateIndex = 
+    let startingDateIndex =
     sortedData.findIndex(hydration => hydration.date === date);
     let day1 = sortedData[startingDateIndex + 6];
     let day2 = sortedData[startingDateIndex + 5];
