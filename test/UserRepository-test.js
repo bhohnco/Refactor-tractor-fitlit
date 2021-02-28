@@ -78,19 +78,19 @@ describe.only('UserRepository', function() {
   });
   it('should have a method that calculates all users average ounces of water', function() {
     user1.hydrationData = [
-      {"2019/06/15": 1},
-      {"2019/06/15": 1},
-      {"2019/06/16": 5}
+      {userID: 1, date: "2019/06/15", ounces: 1},
+      {userID: 1, data: "2019/06/15", ounces: 1},
+      {userID: 1, date: "2019/06/16", ounces: 5}
     ]
     user2.hydrationData = [
-      {"2019/06/15": 1},
-      {"2019/06/15": 1},
-      {"2019/06/16": 8}
+      {userID: 2, date: "2019/06/15", ounces: 1},
+      {userID: 2, date: "2019/06/15", ounces: 1},
+      {userID: 2, date: "2019/06/16", ounces: 8}
     ]
     user3.hydrationData= [
-      {"2019/06/15": 1},
-      {"2019/06/15": 1},
-      {"2019/06/16": 4}
+      {userID: 3, date: "2019/06/15", ounces: 1},
+      {userID: 3, date: "2019/06/15", ounces: 1},
+      {userID: 3, date: "2019/06/16", ounces: 4}
     ]
     expect(userRepository.calculateAverageDailyWater("2019/06/16")).to.equal(5)
   });

@@ -51,12 +51,11 @@ class UserRepository {
   }
 
   calculateAverageDailyWater(date) {
-    console.log(this)
-    console.log(this.findDate(date, 'hydrationData'))
     let todaysDrinkers = this.findDate(date, 'hydrationData');
     let sumDrankOnDate = todaysDrinkers.reduce((sum, drinker) => {
       return sum += drinker[0].ounces;
     }, 0)
+
     return Math.floor(sumDrankOnDate / todaysDrinkers.length);
   }
 
