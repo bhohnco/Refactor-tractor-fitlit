@@ -4,7 +4,7 @@ import UserRepository from '../src/UserRepository';
 import User from '../src/User';
 import Sleep from '../src/Sleep';
 
-describe.only('UserRepository', function() {
+describe('UserRepository', function() {
   let user1;
   let user2;
   let user3;
