@@ -1,4 +1,3 @@
-@import 'base';
 *,
 *:after,
 *:before {
@@ -7,79 +6,37 @@ margin: 0;
 padding: 0;
 }
 
-//* {
-//  border: solid red;
-//}
-
 body {
-  background-color: $primary-background;
+  background-color: #1F1F1F;
+  font-family: 'Oswald', sans-serif;
 }
 
 /* HEADER */
 header {
-  justify-content: center;
   text-align: center;
   height: 9vw;
 }
 
 button:active {
   border: none;
-}
-
-#add-activity-button {
-  background-image: url(../images/navbutton.png);
-  @include header-button(left, 1vw, 0.5vw);
+  outline: none;
 }
 
 #profile-button {
   background-image: url(../images/profile.png);
-  @include header-button(right, 1vw, 0.5vw);
-}
-
-#user-activity-dropdown {
-  color: white;
-  margin-right: 60%;
-  //margin-top: -1.2%;
-  position: relative;
-  text-align: center;
-  z-index: 100;
-}
-
-.user-data-inputs {
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
-}
-
-.top-section {
-  @extend .user-data-inputs;
-  z-index: 100;
-  align-items: center;
-}
-
-.sleep-dropdown{
-  @extend .user-data-inputs;
-  background-color: rebeccapurple;
-  display: flex;
-  align-items: center;
-}
-
-.activity-dropdown{
-  @extend .user-data-inputs;
-  background-color: green;
-  display: flex;
-  align-items: center;
-}
-
-.hydration-dropdown{
-  @extend .user-data-inputs;
-  background-color: deepskyblue;
-  display: flex;
-  align-items: center;
+  background-position: center;
+  background-size: 5.6vw;
+  border: none;
+  display: inline;
+  float: right;
+  height: 5.6vw;
+  margin-right: .5vw;
+  margin-top: 1.6vw;
+  width: 5.6vw;
 }
 
 #user-info-dropdown {
-  background-color: $primary-background;
+  background-color: #1F1F1F;
   color: white;
   margin-left: 60%;
   margin-top: -1.2%;
@@ -89,30 +46,12 @@ button:active {
 }
 
 .dropdown-p {
-  font-size: 1em;
+  font-size: 1.2vw;
   font-weight: 300;
   padding-bottom: 1vw;
   padding-top: 0;
   text-align: center;
   width: 100%;
-}
-
-.dropdown-option {
-  @extend .dropdown-p;
-  font-weight: 500;
-  font-size: 2em;
-  color: black;
-}
-
-.data-input-field {
-  @include flex-container(center);
-  @include height-and-width(25px, 60px);
-  margin-bottom: 2%;
-}
-
-.add-sleep-data, .add-activity-data, .add-hydration-data {
-  @include height-and-width(25px, 120px);
-  margin-bottom: 2%;
 }
 
 /* TEXT ELEMENTS */
@@ -121,8 +60,6 @@ h1 {
   display: inline;
   font-size: 5.4vw;
   letter-spacing: .2em;
-  text-align: center;
-  padding-top: 50px;
 }
 
 h2 {
@@ -133,10 +70,9 @@ h2 {
 h3 {
   display: inline;
   font-family: 'Work Sans', sans-serif;
-  font-size: 2.5vw;
-  font-weight: 600;
+  font-size: 3vw;
+  font-weight: 700;
   letter-spacing: .2em;
-  //justify-content: center;
 }
 
 h4 {
@@ -145,7 +81,7 @@ h4 {
 
 h5 {
   font-size: 1.8vw;
-  //padding-bottom: 1vw;
+  padding-bottom: 1vw;
   text-align: center;
 }
 
@@ -179,8 +115,9 @@ main {
 }
 
 .main-card-top-row {
-  @include flex-container(space-between);
   align-items: center;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
 }
 
@@ -190,23 +127,32 @@ main {
 }
 
 #steps-card-container {
- @include card-container($step-color, steps);
+  background-color: #F5634B;
+  grid-area: steps;
+  margin: .5vw;
 }
 
 #hydration-card-container {
-  @include card-container($hydration-color, hydration);
+  background-color: #54C6BE;
+  grid-area: hydration;
+  margin: .5vw;
 }
 
 #stairs-card-container {
-  @include card-container($stairs-color, stairs);
+  background-color: #8975B2;
+  grid-area: stairs;
+  margin: .5vw;
 }
 
 #sleep-card-container {
-  @include card-container($sleep-color, sleep)
+  background-color: #FBD089;
+  grid-area: sleep;
+  margin: .5vw;
 }
 
 .card-data-line {
-  @include flex-container(center);
+  display: flex;
+  justify-content: center;
   margin-bottom: 2vw;
 }
 
@@ -260,6 +206,15 @@ main {
   float: right;
   height: 3.4vw;
   margin-right: 1vw;
+  width: 3.4vw;
+}
+
+.trending-button {
+  background-position: center;
+  background-size: 3.4vw;
+  border: none;
+  height: 3.4vw;
+  margin-left: 1vw;
   width: 3.4vw;
 }
 
@@ -362,19 +317,11 @@ main {
   color: #F8BA00;
 }
 
-.white-text {
-  color: white;
+@media screen and (max-width: 768px) {
 }
 
 @media screen and (max-width: 414px) {
-  .main-card {
-    @include main-card-styling(45vw);
-    width: 100%;
-  }
-  .h2, .h3 {
-    justify-content: center;
-  }
-  .hide {
+  }  .hide {
     display: none;
   }
 }
