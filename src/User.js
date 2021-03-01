@@ -100,30 +100,30 @@ class User extends UserRepository {
 
   findTrendingStepDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityData.length; i++) {
-      if (this.activityData[i + 1] && this.activityData[i].steps > this.activityData[i + 1].steps) {
-        positiveDays.unshift(this.activityData[i].date);
+    this.activityData.forEach((activity, index) => {
+      if (this.activityData[index + 1] && activity.steps > this.activityData[index + 1].steps) {
+        positiveDays.unshift(activity.date);
       } else if (positiveDays.length > 2) {
         this.trendingStepDays.push(`Your most recent positive step streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];
       }
-    }
+    }) 
+    
   }
 
   findTrendingStairsDays() {
     let positiveDays = [];
-    for (var i = 0; i < this.activityData.length; i++) {
-      if (this.activityData[i + 1] && this.activityData[i].flightsOfStairs > this.activityData[i + 1].flightsOfStairs) {
-        positiveDays.unshift(this.activityData[i].date);
+    this.activityData.forEach((activity, index) => {
+      if (this.activityData[index + 1] && activity.flightsOfStairs > this.activityData[index + 1].flightsOfStairs) {
+        positiveDays.unshift(activity.date);
       } else if (positiveDays.length > 2) {
         this.trendingStairsDays.push(`Your most recent positive climbing streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];
       }
-    }
+    })
   }
 
   findFriendsTotalStepsForWeek(users, date) {
-    console.log(this.friends)
     this.friends.map(friend => {
       let matchedFriend = users.find(user => user.id === friend);
       matchedFriend.calculateTotalStepsThisWeek(date);
