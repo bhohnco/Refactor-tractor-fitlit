@@ -141,8 +141,8 @@ function addNewSleep() {
     },
     body: JSON.stringify(newData),
   })
-  .then(response => console.log(response.status))
-  .catch(error => console.log(error))
+    .then(response => console.log(response.status))
+    .catch(error => console.log(error))
 }
 
 function addActivity() {
@@ -155,8 +155,8 @@ function addActivity() {
     },
     body: JSON.stringify(newData),
   })
-  .then(response => console.log(response.status))
-  .catch(error => console.log(error))
+    .then(response => console.log(response.status))
+    .catch(error => console.log(error))
 }
 
 function addWater() {
@@ -169,8 +169,8 @@ function addWater() {
     },
     body: JSON.stringify(newData),
   })
-  .then(response => console.log(response.status))
-  .catch(error => console.log(error))
+    .then(response => console.log(response.status))
+    .catch(error => console.log(error))
 }
 
 function buildPage() {
@@ -213,7 +213,7 @@ function hiddenOnBuild() {
 }
 
 function findFriends() {
-    user.findFriendsNames(userRepository.users);
+  user.findFriendsNames(userRepository.users);
 }
 
 function flipCard(cardToHide, cardToShow) {
@@ -231,10 +231,9 @@ function showUserDropdown() {
 
 function sortHydroDate() {
   let sortedHydrationDataByDate = user.hydrationData[0].addDailyOunces(todayDate)
-  for (var i = 0; i < sortedHydrationDataByDate.length - 1; i++) {
-    dailyOz[i].innerText =
-    sortedHydrationDataByDate[i].ounces;
-  }
+  sortedHydrationDataByDate.forEach((hydrationData, index) => {
+    if (dailyOz[index]) dailyOz[index].innerText = hydrationData.ounces;
+  })
 }
 
 function userElements() {
