@@ -80,7 +80,7 @@ button:active {
 }
 
 #user-info-dropdown {
-  background-color: $primary-background;
+  background-color: $hydration-color;
   color: white;
   margin-left: 60%;
   margin-top: -1.2%;
@@ -376,8 +376,39 @@ main {
   color: white;
 }
 
+@media only screen  and (min-width : 1224px) {
+  /* Desktops and laptops */
+}
+
+@media screen and (max-width: 768px) {
+  //tablet//
+  main {
+    display: grid;
+    //flex-direction: column;
+  }
+
+  .main-card {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    height: 20vw;
+    justify-content: center;
+  }
+
+  .main-card-top-row {
+    @include flex-container(space-between);
+    align-items: center;
+    width: 100%;
+  }
+
+  .main-card-bottom-row {
+    text-align: center;
+    width: 100%;
+  }
+}
+
 @media screen and (max-width: 414px) {
-  
+  //phone//
   header {
     position: fixed;
     top: 0;
@@ -422,6 +453,55 @@ main {
     font-weight: bolder;
   }
 
+  .date-input {
+    //margin-right: auto;
+  }
+  .dropdown-option.h3 {
+    font-size:1.1em;
+    font-weight: 3000;
+    color: black;
+  }
+
+  .dropdown-option {
+    font-weight: 2500;
+    font-size: 1.0em;
+    color: black;
+    padding-bottom: 1vw;
+    padding-top: 0;
+    text-align: center;
+    width: 100%;
+    text-shadow: none;
+  }
+
+  .dropdown-p {
+    //font-size: 1.3em;
+    font-size: 1em;
+    font-weight: 300;
+    padding-bottom: 1.2vw;
+    padding-top: 0;
+    text-align: center;
+    width: 100%;
+  }
+
+  p {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 1.4vw;
+    font-weight: 600;
+    //letter-spacing: .2vw;
+    //margin-right: 1vw;
+    //padding-top: 2vw;
+    //text-align: right;
+    //width: 9vw;
+    //word-break: keep-all;
+  }
+
+  .add-sleep-data, .add-activity-data, .add-hydration-data {
+    @include height-and-width(25px, 120px);
+    margin-bottom: 2%;
+    color:blue;
+    text-shadow: none;
+  }
+
   h2, h3, h4 {
     justify-content: center;
     @include card-header(3vh);
@@ -442,7 +522,6 @@ main {
 
   .hydration-weekly-amount, .hydration-weekly-label {
     @include card-header(1.85vh);
-
   }
 
   .card-data-line p {
