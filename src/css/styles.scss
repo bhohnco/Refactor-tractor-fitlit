@@ -5,11 +5,9 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
+color: hsl(30, 100%, 96%);
+text-shadow: 2px 2px 0px #1E9EE6, 4px 4px 0px rgba(0,0,0,0.25);
 }
-
-//* {
-//  border: solid red;
-//}
 
 body {
   background-color: $primary-background;
@@ -21,7 +19,9 @@ header {
   text-align: center;
   height: 9vw;
 }
-
+header h1, h1 span {
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.25), 2px 2px 0px rgba(0,0,0,0.25);
+}
 button:active {
   border: none;
 }
@@ -34,6 +34,7 @@ button:active {
 #profile-button {
   background-image: url(../images/profile.png);
   @include header-button(right, 1vw, 0.5vw);
+  background-color: transparent;
 }
 
 #user-activity-dropdown {
@@ -59,21 +60,21 @@ button:active {
 
 .sleep-dropdown{
   @extend .user-data-inputs;
-  background-color: rebeccapurple;
+  background-color: $sleep-color;
   display: flex;
   align-items: center;
 }
 
 .activity-dropdown{
   @extend .user-data-inputs;
-  background-color: green;
+  background-color: $step-color;
   display: flex;
   align-items: center;
 }
 
 .hydration-dropdown{
   @extend .user-data-inputs;
-  background-color: deepskyblue;
+  background-color: $hydration-color;
   display: flex;
   align-items: center;
 }
@@ -240,6 +241,8 @@ main {
   height: 3.4vw;
   margin-left: 1vw;
   width: 3.4vw;
+  background-image: url('../..//information.png');
+  background-color: transparent;
 }
 
 .friends-button {
@@ -250,6 +253,8 @@ main {
   height: 3.4vw;
   margin-right: 1vw;
   width: 3.4vw;
+  background-image: url('../..//audience.png');
+  background-color: transparent;
 }
 
 .calendar-button {
@@ -261,6 +266,8 @@ main {
   height: 3.4vw;
   margin-right: 1vw;
   width: 3.4vw;
+  background-image: url('../..//calendar.png');
+  background-color: transparent;
 }
 
 .go-back-button {
@@ -270,80 +277,83 @@ main {
   height: 3.4vw;
   margin-left: 1vw;
   width: 3.4vw;
+  background-image: url('../..//undo.png');
+  background-color: transparent;
 }
 
-.steps-go-back-button {
-  background-image: url(../images/steps-goback.png);
-}
+// .steps-go-back-button {
+//   background-image: url(../images/steps-goback.png);
+// }
 
-.steps-info-button {
-  background-image: url(../images/steps-info.png);
-}
+// .steps-info-button {
+//   background-image: url(../images/steps-info.png);
+// }
 
-.steps-friends-button {
-  background-image: url(../images/steps-friends.png);
-}
+// .steps-friends-button {
+//   background-image: url(../images/steps-friends.png);
+// }
 
-.steps-calendar-button {
-  background-image: url(../images/steps-calendar.png);
-}
+// .steps-calendar-button {
+//   background-image: url(../images/steps-calendar.png);
+//   color: $step-color
+// }
 
-.hydration-go-back-button {
-  background-image: url(../images/hydration-goback.png);
-}
+// .hydration-go-back-button {
+//   background-image: url(../images/hydration-goback.png);
+// }
 
-.hydration-info-button {
-  background-image: url(../images/hydration-info.png);
-}
+// .hydration-info-button {
+//   background-image: url(../images/hydration-info.png);
+// }
 
-.hydration-friends-button {
-  background-image: url(../images/hydration-friends.png);
-}
+// .hydration-friends-button {
+//   background-image: url(../images/hydration-friends.png);
+// }
 
-.hydration-calendar-button {
-  background-image: url(../images/hydration-calendar.png);
-}
+// .hydration-calendar-button {
+//   background-image: url(../images/hydration-calendar.png);
+// }
 
-.stairs-go-back-button {
-  background-image: url(../images/stairs-goback.png);
-}
+// .stairs-go-back-button {
+//   background-image: url(../images/stairs-goback.png);
+// }
 
-.stairs-info-button {
-  background-image: url(../images/stairs-info.png);
-}
+// .stairs-info-button {
+//   background-image: url(../images/stairs-info.png);
+// }
 
-.stairs-friends-button {
-  background-image: url(../images/stairs-friends.png);
-}
+// .stairs-friends-button {
+//   background-image: url(../images/stairs-friends.png);
+// }
 
-.stairs-calendar-button {
-  background-image: url(../images/stairs-calendar.png);
-}
+// .stairs-calendar-button {
+//   background-image: url(../images/stairs-calendar.png);
+// }
 
-.sleep-go-back-button {
-  background-image: url(../images/sleep-goback.png);
-}
+// .sleep-go-back-button {
+//   background-image: url(../images/sleep-goback.png);
+// }
 
-.sleep-info-button {
-  background-image: url(../images/sleep-info.png);
-}
+// .sleep-info-button {
+//   background-image: url(../images/sleep-info.png);
+// }
 
-.sleep-friends-button {
-  background-image: url(../images/sleep-friends.png);
-}
+// .sleep-friends-button {
+//   background-image: url(../images/sleep-friends.png);
+// }
 
-.sleep-calendar-button {
-  background-image: url(../images/sleep-calendar.png);
-}
+// .sleep-calendar-button {
+//   background-image: url(../images/sleep-calendar.png);
+// }
 
 
-.steps-trending-button {
-  background-image: url(../images/steps-trending.png);
-}
+// .steps-trending-button {
+//   background-image: url(../images/steps-trending.png);
+// }
 
-.stairs-trending-button {
-  background-image: url(../images/stairs-trending.png);
-}
+// .stairs-trending-button {
+//   background-image: url(../images/stairs-trending.png);
+// }
 
 /* CHANGING CLASSES */
 .hide {
@@ -367,13 +377,79 @@ main {
 }
 
 @media screen and (max-width: 414px) {
-  .main-card {
-    @include main-card-styling(45vw);
+  
+  header {
+    position: fixed;
+    top: 0;
+    margin-bottom: 10%;
+    background-color: $primary-background;
     width: 100%;
   }
-  .h2, .h3 {
-    justify-content: center;
+  
+  main {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-content: space-around;
+    margin-top: 11%;
   }
+
+  .card-container {
+    margin: 0;
+    height: 20%;
+  }
+
+  .main-card, .info-card, .friends-card, .calendar-card  {
+    height: 100%;
+    overflow-y: scroll
+  }
+
+  .icon, .info-button, .calendar-button, .go-back-button {
+    @include height-and-width(4vh, 4vh);
+    background-size: cover;
+    background-repeat: no-repeat;
+    align-self: flex-end;
+  }
+
+  .friends-button {
+    @extend .icon;
+    @include height-and-width(6vh, 6vh);
+
+  }
+
+  header h1, h1 span {
+    @include card-header(3vh);
+    font-weight: bolder;
+  }
+
+  h2, h3, h4 {
+    justify-content: center;
+    @include card-header(3vh);
+    font-weight: bolder;
+    text-align: center;
+    width: 100%;
+  }
+
+  .card-data-line h4 {
+    @include card-header(3vh);
+    text-align: right;
+  }
+
+  .hydration-data-line, .card-data-line {
+    display: block;
+    text-align: center
+  }
+
+  .hydration-weekly-amount, .hydration-weekly-label {
+    @include card-header(1.85vh);
+
+  }
+
+  .card-data-line p {
+    @include card-header(2vh);
+    margin: 10%;
+  }
+
   .hide {
     display: none;
   }
