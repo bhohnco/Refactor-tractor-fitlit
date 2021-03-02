@@ -41,9 +41,7 @@ const profileButton = document.querySelector('#profile-button');
 const sleepCalendarCard = document.querySelector('#sleep-calendar-card');
 const sleepCalendarHoursAverageWeekly = document.querySelector('#sleep-calendar-hours-average-weekly');
 const sleepCalendarQualityAverageWeekly = document.querySelector('#sleep-calendar-quality-average-weekly');
-const sleepFriendLongestSleeper = document.querySelector('#sleep-friend-longest-sleeper');
 const sleepFriendsCard = document.querySelector('#sleep-friends-card');
-const sleepFriendWorstSleeper = document.querySelector('#sleep-friend-worst-sleeper');
 const sleepInfoCard = document.querySelector('#sleep-info-card');
 const sleepInfoHoursAverageAlltime = document.querySelector('#sleep-info-hours-average-alltime');
 const sleepInfoQualityAverageAlltime = document.querySelector('#sleep-info-quality-average-alltime');
@@ -63,7 +61,6 @@ const stairsFriendsCard = document.querySelector('#stairs-friends-card');
 const stairsInfoCard = document.querySelector('#stairs-info-card');
 const stairsInfoFlightsToday = document.querySelector('#stairs-info-flights-today');
 const stairsMainCard = document.querySelector('#stairs-main-card');
-const stairsTrendingButton = document.querySelector('.stairs-trending-button');
 const stairsTrendingCard = document.querySelector('#stairs-trending-card');
 const stairsUserStairsToday = document.querySelector('#stairs-user-stairs-today');
 const stepsCalendarTotalActiveMinutesWeekly = document.querySelector('#steps-calendar-total-active-minutes-weekly');
@@ -73,10 +70,7 @@ const stepsInfoActiveMinutesToday = document.querySelector('#steps-info-active-m
 const stepsInfoMilesWalkedToday = document.querySelector('#steps-info-miles-walked-today');
 const stepsFriendActiveMinutesAverageToday = document.querySelector('#steps-friend-active-minutes-average-today');
 const stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps-average-today');
-const stepsTrendingButton = document.querySelector('.steps-trending-button');
 const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
-const trendingStepsPhraseContainer = document.querySelector('.trending-steps-phrase-container');
-const trendingStairsPhraseContainer = document.querySelector('.trending-stairs-phrase-container');
 const userActivityDropdown = document.querySelector('#user-activity-dropdown');
 const userInfoDropdown = document.querySelector('#user-info-dropdown');
 const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
@@ -377,10 +371,29 @@ profileButton.addEventListener('click', showDropdown);
 addSleepButton.addEventListener('click', addNewSleep);
 addActivityButton.addEventListener('click', addActivity);
 addHydrationButton.addEventListener('click', addWater);
+window.addEventListener('resize', checkMediaQuery);
 
 // {“userID”: integer, “date”: string, “numSteps”: integer, “minutesActive”: integer, “flightsOfStairs”: integer}
 
 // {"userID": integer, "date": string, "numOunces": integer}
+
+function checkMediaQuery() {
+  if (window.innerWidth > 414) {
+    // Then log this message to the console
+    console.log('Media Query Matched Phone')
+  }
+  if (window.innerWidth > 768) {
+    // Then log this message to the console
+    console.log('Media Query Matched Tablet')
+  }
+  if (window.innerWidth > 1224) {
+    // Then log this message to the console
+    console.log('Media Query Matched desktop')
+  }
+}
+
+// Add a listener for when the window resizes
+
 
 
 function showInfo() {
