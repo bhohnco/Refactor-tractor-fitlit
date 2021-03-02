@@ -80,19 +80,19 @@ const trendingStairsPhraseContainer = document.querySelector('.trending-stairs-p
 const userActivityDropdown = document.querySelector('#user-activity-dropdown');
 const userInfoDropdown = document.querySelector('#user-info-dropdown');
 const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
-
 const dateInput = document.querySelector(".date-input");
 const sleepHrInput = document.querySelector(".hours-slept-data-input");
 const sleepQtInput = document.querySelector(".sleep-quality-data-input");
 const addSleepButton = document.querySelector(".add-sleep-data");
-
 const stepDataInput = document.querySelector(".number-steps-data-input");
 const minutesActiveInout = document.querySelector(".minutes-active-data-input");
 const flightStairsInput = document.querySelector(".flights-stairs-data-input");
 const addActivityButton = document.querySelector(".add-activity-data");
-
 const numOuncesInput = document.querySelector(".number-ounces-data-input");
 const addHydrationButton = document.querySelector(".add-hydration-data");
+const sleepError = document.querySelector("#sleepError");
+const activityError = document.querySelector("#stairsError");
+const stairError = document.querySelector("#hydroError");
 
 Promise.all([getUserData, getSleepData, getActivityData, getHydrationData])
   .then((values) => {
@@ -141,7 +141,7 @@ function addNewSleep() {
     },
     body: JSON.stringify(newData),
   })
-    .then(response => console.log(response.status))
+    .then(response => sleepErrorMessage(response.status))
     .catch(error => console.log(error))
 }
 
@@ -155,7 +155,7 @@ function addActivity() {
     },
     body: JSON.stringify(newData),
   })
-    .then(response => console.log(response.status))
+    .then(response => activityErrorMessage(response.status))
     .catch(error => console.log(error))
 }
 
@@ -169,31 +169,52 @@ function addWater() {
     },
     body: JSON.stringify(newData),
   })
-    .then(response => console.log(response.status))
+    .then(response => stairErrorMessage(response.status))
     .catch(error => console.log(error))
 }
 
+function sleepErrorMessage(res) {
+  console.log(res)
+  if (res >= 400) {
+    sleepError.innerText = "Request Failed.";
+  }
+}
+
+function activityErrorMessage(res) {
+    console.log(res)
+  if (res >= 400) {
+    activityError.innerText = "Request Failed.";
+  }
+}
+
+function stairErrorMessage(res) {
+    console.log(res)
+  if (res >= 400) {
+    stairError.innerText = "Request Failed.";
+  }
+}
+
 function buildPage() {
-  userElements()
-  walkCardBuild()
-  waterCardBuild()
-  sleepCardBuild()
-  stairsCardBuild()
-  hiddenOnBuild()
+  userElements();
+  walkCardBuild();
+  waterCardBuild();
+  sleepCardBuild();
+  stairsCardBuild();
+  hiddenOnBuild();
 }
 
 function walkCardBuild() {
-  stepElements()
-  stepFriendElements()
-  stepDropdown()
-  stepFriendsPara()
-  stepMinToday()
-  stepAct()
+  stepElements();
+  stepFriendElements();
+  stepDropdown();
+  stepFriendsPara();
+  stepMinToday();
+  stepAct();
 }
 
 function waterCardBuild() {
-  sortHydroDate()
-  hydroElements()
+  sortHydroDate();
+  hydroElements();
 }
 
 function sleepCardBuild() {
