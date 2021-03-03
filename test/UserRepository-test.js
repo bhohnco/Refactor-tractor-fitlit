@@ -1,8 +1,6 @@
 import { expect } from 'chai';
-
 import UserRepository from '../src/UserRepository';
 import User from '../src/User';
-import Sleep from '../src/Sleep';
 
 describe('UserRepository', function() {
   let user1;
@@ -87,7 +85,7 @@ describe('UserRepository', function() {
       {userID: 2, date: "2019/06/15", ounces: 1},
       {userID: 2, date: "2019/06/16", ounces: 8}
     ]
-    user3.hydrationData= [
+    user3.hydrationData = [
       {userID: 3, date: "2019/06/15", ounces: 1},
       {userID: 3, date: "2019/06/15", ounces: 1},
       {userID: 3, date: "2019/06/16", ounces: 4}
@@ -95,22 +93,6 @@ describe('UserRepository', function() {
     expect(userRepository.calculateAverageDailyWater("2019/06/16")).to.equal(5)
   });
   it('should have a method that finds the best sleepers', function() {
-    const sleepData = [{
-      "userID": 1,
-      "date": "2019/06/16",
-      "hoursSlept": 6.1,
-      "sleepQuality": 1000
-    }, {
-      "userID": 2,
-      "date": "2019/06/15",
-      "hoursSlept": 7.3,
-      "sleepQuality": 500
-    }, {
-      "userID": 3,
-      "date": "2019/06/15",
-      "hoursSlept": 9.3,
-      "sleepQuality": 1.4
-    }];
     expect(userRepository.findBestSleepers("2019/06/16")).to.deep.equal([user1, user2, user3]);
   });
   it('should have a method that finds the longest sleepers', function() {

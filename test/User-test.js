@@ -1,22 +1,15 @@
 import { expect } from 'chai';
-
 import User from '../src/User';
-import Activity from '../src/Activity'
 import UserRepository from '../src/UserRepository'
 import {users, activities} from './User-test-data.js'
 
 describe('User', function() {
   let user;
-  let activity1;
-  let activity2;
-  let activity3;
   let userRepository;
   beforeEach(() => {
     userRepository = new UserRepository()
     user = new User(users[0])
     userRepository.users.push(user);
-    activity1 = new Activity(user, user, userRepository);
-    activity2 = new Activity(user, user, userRepository);
   })
   it('should be a function', function() {
     expect(User).to.be.a('function');
@@ -125,7 +118,7 @@ describe('User', function() {
     });
 
   })
-  
+
   it('should have a method that return the highest climbing record', function() {
     let user = new User(users[0])
     user.activityData.push(...activities[3])
@@ -159,7 +152,7 @@ describe('User', function() {
     user.calculateTotalStepsThisWeek('2019/06/28');
     expect(user.totalStepsThisWeek).to.equal(42);
   });
-  describe('findFrientsTotalStepsForWeek',() => {
+  describe('findFrientsTotalStepsForWeek', () => {
 
     it('should be able to find a friends weekly steps', function() {
       let user2 = new User(activities[7][0]);
@@ -185,4 +178,3 @@ describe('User', function() {
     })
   })
 });
-    
