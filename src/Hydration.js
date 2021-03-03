@@ -11,7 +11,6 @@ class Hydration extends User {
   updateHydration(user) {
     const hydrationDataCheck =
     user.hydrationData.find(hydrationObj => hydrationObj[this.date]);
-
     if (!hydrationDataCheck) {
       user.hydrationData.unshift(this);
       const mappedHydrationData = user.hydrationData.map(hydration => {
@@ -19,7 +18,6 @@ class Hydration extends User {
         newObj[hydration.date] = hydration.ounces
         return newObj;
       })
-
       const totalOunces = mappedHydrationData.reduce((numAcc, hydrationObj) => {
         numAcc += Object.values(hydrationObj)[0];
         return numAcc;
@@ -27,7 +25,7 @@ class Hydration extends User {
       user.ouncesAverage = Math.round(totalOunces / user.hydrationData.length);
     }
 
-  }   
+  }
 
   addDailyOunces(date) {
     let dataSet = this.parentUser.hydrationData;

@@ -20,8 +20,6 @@ let sleepData = [];
 let activityData = [];
 let hydrationData = [];
 let todayDate = "2019/09/22";
-
-// DOM ELEMENTS
 const dailyOz = document.querySelectorAll('.daily-oz');
 const dropdownEmail = document.querySelector('#dropdown-email');
 const dropdownFriendsStepsContainer = document.querySelector('#dropdown-friends-steps-container');
@@ -73,7 +71,6 @@ const stepsFriendStepsAverageToday = document.querySelector('#steps-friend-steps
 const stepsUserStepsToday = document.querySelector('#steps-user-steps-today');
 const userActivityDropdown = document.querySelector('#user-activity-dropdown');
 const userInfoDropdown = document.querySelector('#user-info-dropdown');
-const friendsStepsParagraphs = document.querySelectorAll('.friends-steps');
 const dateInput = document.querySelector(".date-input");
 const sleepHrInput = document.querySelector(".hours-slept-data-input");
 const sleepQtInput = document.querySelector(".sleep-quality-data-input");
@@ -131,7 +128,7 @@ function addNewSleep() {
   fetch(sleepUrl, {
     method: 'POST',
     headers: {
-      'Content-Type':'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newData),
   })
@@ -145,7 +142,7 @@ function addActivity() {
   fetch(activityUrl, {
     method: 'POST',
     headers: {
-      'Content-Type':'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newData),
   })
@@ -159,7 +156,7 @@ function addWater() {
   fetch(hydrationUrl, {
     method: 'POST',
     headers: {
-      'Content-Type':'application/json'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify(newData),
   })
@@ -175,14 +172,14 @@ function sleepErrorMessage(res) {
 }
 
 function activityErrorMessage(res) {
-    console.log(res)
+  console.log(res)
   if (res >= 400) {
     activityError.innerText = "Request Failed.";
   }
 }
 
 function stairErrorMessage(res) {
-    console.log(res)
+  console.log(res)
   if (res >= 400) {
     stairError.innerText = "Request Failed.";
   }
@@ -201,7 +198,6 @@ function walkCardBuild() {
   stepElements();
   stepFriendElements();
   stepDropdown();
-  stepFriendsPara();
   stepMinToday();
   stepAct();
 }
@@ -249,7 +245,9 @@ function showUserDropdown() {
 function sortHydroDate() {
   let sortedHydrationDataByDate = user.hydrationData[0].addDailyOunces(todayDate)
   sortedHydrationDataByDate.forEach((hydrationData, index) => {
-    if (dailyOz[index]) dailyOz[index].innerText = hydrationData.ounces;
+    if (dailyOz[index]) {
+      dailyOz[index].innerText = hydrationData.ounces;
+    }
   })
 }
 
@@ -351,52 +349,25 @@ function stepDropdown() {
   });
 }
 
-function stepFriendsPara() {
-  friendsStepsParagraphs.forEach(paragraph => {
-    if (friendsStepsParagraphs[0] === paragraph) {
-      paragraph.classList.add('green-text');
-    }
-    if (friendsStepsParagraphs[friendsStepsParagraphs.length - 1] === paragraph) {
-      paragraph.classList.add('red-text');
-    }
-    if (paragraph.innerText.includes('YOU')) {
-      paragraph.classList.add('yellow-text');
-    }
-  });
-}
-
-// all the events
 mainPage.addEventListener('click', showInfo);
 addUserActivity.addEventListener('click', showUserDropdown);
 profileButton.addEventListener('click', showDropdown);
-
 addSleepButton.addEventListener('click', addNewSleep);
 addActivityButton.addEventListener('click', addActivity);
 addHydrationButton.addEventListener('click', addWater);
 window.addEventListener('resize', checkMediaQuery);
 
-// {“userID”: integer, “date”: string, “numSteps”: integer, “minutesActive”: integer, “flightsOfStairs”: integer}
-
-// {"userID": integer, "date": string, "numOunces": integer}
-
 function checkMediaQuery() {
   if (window.innerWidth > 414) {
-    // Then log this message to the console
     console.log('Media Query Matched Phone')
   }
   if (window.innerWidth > 768) {
-    // Then log this message to the console
     console.log('Media Query Matched Tablet')
   }
   if (window.innerWidth > 1224) {
-    // Then log this message to the console
     console.log('Media Query Matched desktop')
   }
 }
-
-// Add a listener for when the window resizes
-
-
 
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {

@@ -1,5 +1,5 @@
 import User from './User'
-class Sleep extends User { // instance for the user's sleep each day
+class Sleep extends User { 
   constructor(userData, data, userRepository) {
     super(userData);
     this.userId = data.userID;
