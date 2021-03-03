@@ -5,12 +5,13 @@
 box-sizing: border-box;
 margin: 0;
 padding: 0;
-color: hsl(30, 100%, 96%);
-text-shadow: 2px 2px 0px #1E9EE6, 4px 4px 0px rgba(0,0,0,0.25);
+color: #303030;
+        //(30, 100%, 96%);
+//text-shadow: 2px 2px 0px #1E9EE6, 4px 4px 0px rgba(0,0,0,0.25);
 }
 
 body {
-  background-color: $primary-background;
+  background-color: #303030;
 }
 
 /* HEADER */
@@ -19,8 +20,13 @@ header {
   text-align: center;
   height: 9vw;
 }
+
 header h1, h1 span {
   text-shadow: 1px 1px 0px rgba(0,0,0,0.25), 2px 2px 0px rgba(0,0,0,0.25);
+  color: $primary-background;
+  //width: 50%;
+  top: 30%;
+  margin-top: 40px;
 }
 button:active {
   border: none;
@@ -29,6 +35,9 @@ button:active {
 #add-activity-button {
   background-image: url(../images/navbutton.png);
   @include header-button(left, 1vw, 0.5vw);
+  //position:fixed;
+  left: 0;
+  //top: 0;
 }
 
 #profile-button {
@@ -39,11 +48,14 @@ button:active {
 
 #user-activity-dropdown {
   color: white;
-  margin-right: 60%;
-  //margin-top: -1.2%;
+  margin-right: 75%;
+  margin-top: -1.2%;
   position: relative;
   text-align: center;
-  z-index: 100;
+  //z-index: 100;
+  //width: 20%;
+  padding-top: 25px;
+  border-radius: 5px;
 }
 
 .user-data-inputs {
@@ -56,41 +68,51 @@ button:active {
   @extend .user-data-inputs;
   z-index: 100;
   align-items: center;
+  background-color: $primary-background;
+  padding-top: 15px;
+  border-radius: 5px;
 }
 
 .sleep-dropdown{
   @extend .user-data-inputs;
-  background-color: $sleep-color;
+  background-color: $primary-background;
   display: flex;
   align-items: center;
+  border-color: #1F1F1F;
 }
 
 .activity-dropdown{
   @extend .user-data-inputs;
-  background-color: $step-color;
+  background-color: $primary-background;
   display: flex;
   align-items: center;
+  color: #1F1F1F;
+  padding-top: 25px;
 }
 
 .hydration-dropdown{
   @extend .user-data-inputs;
-  background-color: $hydration-color;
+  background-color: $primary-background;
   display: flex;
   align-items: center;
+  border-color: #1F1F1F;
+  border-radius: 5px;
 }
 
 #user-info-dropdown {
-  background-color: $hydration-color;
+  background-color: $primary-background;
   color: white;
-  margin-left: 60%;
+  margin-left: 75%;
   margin-top: -1.2%;
   position: relative;
   text-align: center;
+  //width: 30%;
+  border-radius: 5px;
   z-index: 100;
 }
 
 .dropdown-p {
-  font-size: 1em;
+  font-size: .8em;
   font-weight: 300;
   padding-bottom: 1vw;
   padding-top: 0;
@@ -101,7 +123,7 @@ button:active {
 .dropdown-option {
   @extend .dropdown-p;
   font-weight: 500;
-  font-size: 2em;
+  font-size: 1.4em;
   color: black;
 }
 
@@ -118,7 +140,7 @@ button:active {
 
 /* TEXT ELEMENTS */
 h1 {
-  color: #fff;
+  color: $primary-background;
   display: inline;
   font-size: 5.4vw;
   letter-spacing: .2em;
@@ -137,7 +159,8 @@ h3 {
   font-size: 2.5vw;
   font-weight: 600;
   letter-spacing: .2em;
-  //justify-content: center;
+  width: 100%;
+  text-align: center;
 }
 
 h4 {
@@ -165,9 +188,7 @@ p {
 /* MAIN */
 main {
   display: grid;
-  grid-template-areas:
-  'steps hydration'
-  'stairs sleep';
+  grid-template: 1fr 1fr/ 1fr 1fr;
   height: 100%;
 }
 
@@ -175,8 +196,8 @@ main {
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 20vw;
   justify-content: center;
+  height: 20vw;
 }
 
 .main-card-top-row {
@@ -191,19 +212,19 @@ main {
 }
 
 #steps-card-container {
- @include card-container($step-color, steps);
+ @include card-container($step-color, auto);
 }
 
 #hydration-card-container {
-  @include card-container($hydration-color, hydration);
+  @include card-container($hydration-color, auto);
 }
 
 #stairs-card-container {
-  @include card-container($stairs-color, stairs);
+  @include card-container($stairs-color, auto);
 }
 
 #sleep-card-container {
-  @include card-container($sleep-color, sleep)
+  @include card-container($sleep-color, auto)
 }
 
 .card-data-line {
@@ -356,6 +377,10 @@ main {
 // }
 
 /* CHANGING CLASSES */
+.vis-hidden {
+  visibility: hidden;
+}
+
 .hide {
   display: none;
 }
@@ -413,7 +438,7 @@ main {
     position: fixed;
     top: 0;
     margin-bottom: 10%;
-    background-color: $primary-background;
+    background-color: #303030;
     width: 100%;
   }
   
