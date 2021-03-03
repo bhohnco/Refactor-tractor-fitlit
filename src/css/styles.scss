@@ -184,6 +184,10 @@ main {
   width: 100%;
 }
 
+.card-container {
+  margin: 0.5vw;
+}
+
 #steps-card-container {
  @include card-container($step-color, auto);
 }
@@ -255,6 +259,14 @@ main {
 
 @media screen and (max-width: 768px) {
   //tablet//
+  body, html {
+    height: 100%;
+  }
+
+  main{
+    height: 90%;
+  } 
+    
 
   #user-activity-dropdown {
     margin-right: 55%;
@@ -311,8 +323,8 @@ main {
   }
 
   .card-container {
-    margin: 0;
-    height: 23%;
+    width: 100%;
+    padding: 4% 0 4% 0;
   }
 
   .main-card, .info-card, .friends-card, .calendar-card {
