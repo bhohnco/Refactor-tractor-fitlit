@@ -41,6 +41,8 @@ const profileButton = document.querySelector('#profile-button');
 const sleepCalendarCard = document.querySelector('#sleep-calendar-card');
 const sleepCalendarHoursAverageWeekly = document.querySelector('#sleep-calendar-hours-average-weekly');
 const sleepCalendarQualityAverageWeekly = document.querySelector('#sleep-calendar-quality-average-weekly');
+const sleepFriendLongestSleeper = document.querySelector('#sleep-friend-longest-sleeper');
+const sleepFriendWorstSleeper = document.querySelector('#sleep-friend-worst-sleeper');
 const sleepFriendsCard = document.querySelector('#sleep-friends-card');
 const sleepInfoCard = document.querySelector('#sleep-info-card');
 const sleepInfoHoursAverageAlltime = document.querySelector('#sleep-info-hours-average-alltime');
@@ -201,7 +203,6 @@ function walkCardBuild() {
   stepElements();
   stepFriendElements();
   stepDropdown();
-  stepFriendsPara();
   stepMinToday();
   stepAct();
 }
@@ -215,6 +216,12 @@ function sleepCardBuild() {
   sleepElements()
   sleepQToday()
   sleepToday()
+  sleepFriends()
+}
+
+function sleepFriends() {
+  sleepFriendLongestSleeper.innerText = userRepository.findBestSleepers(todayDate)[0].name;
+  sleepFriendWorstSleeper.innerText = userRepository.findBestSleepers(todayDate)[userRepository.findBestSleepers(todayDate).length - 1].name;
 }
 
 function stairsCardBuild() {
@@ -238,12 +245,12 @@ function flipCard(cardToHide, cardToShow) {
 
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
-  addUserActivity.classList.add('hide');
+  userActivityDropdown.classList.add('hide');
 }
 
 function showUserDropdown() {
   userActivityDropdown.classList.toggle('hide');
-  profileButton.classList.add('hide');
+  userInfoDropdown.classList.add('hide');
 }
 
 function sortHydroDate() {
@@ -351,52 +358,17 @@ function stepDropdown() {
   });
 }
 
-function stepFriendsPara() {
-  friendsStepsParagraphs.forEach(paragraph => {
-    if (friendsStepsParagraphs[0] === paragraph) {
-      paragraph.classList.add('green-text');
-    }
-    if (friendsStepsParagraphs[friendsStepsParagraphs.length - 1] === paragraph) {
-      paragraph.classList.add('red-text');
-    }
-    if (paragraph.innerText.includes('YOU')) {
-      paragraph.classList.add('yellow-text');
-    }
-  });
-}
-
 // all the events
 mainPage.addEventListener('click', showInfo);
 addUserActivity.addEventListener('click', showUserDropdown);
 profileButton.addEventListener('click', showDropdown);
-
 addSleepButton.addEventListener('click', addNewSleep);
 addActivityButton.addEventListener('click', addActivity);
 addHydrationButton.addEventListener('click', addWater);
-window.addEventListener('resize', checkMediaQuery);
 
 // {“userID”: integer, “date”: string, “numSteps”: integer, “minutesActive”: integer, “flightsOfStairs”: integer}
 
 // {"userID": integer, "date": string, "numOunces": integer}
-
-function checkMediaQuery() {
-  if (window.innerWidth > 414) {
-    // Then log this message to the console
-    console.log('Media Query Matched Phone')
-  }
-  if (window.innerWidth > 768) {
-    // Then log this message to the console
-    console.log('Media Query Matched Tablet')
-  }
-  if (window.innerWidth > 1224) {
-    // Then log this message to the console
-    console.log('Media Query Matched desktop')
-  }
-}
-
-// Add a listener for when the window resizes
-
-
 
 function showInfo() {
   if (event.target.classList.contains('steps-info-button')) {
