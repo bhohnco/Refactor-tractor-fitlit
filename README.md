@@ -53,3 +53,5 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 
 
 ## Preview
+
+![](https://camo.githubusercontent.com/cacbb471f4690174063dc1fbcaf08c12ee5a5b0585cff9aebf1e7786cd42f50d/68747470733a2f2f6d656469612e67697068792e636f6d2f6d656469612f7a6b634d47746d635434613449514e63344a2f67697068792e676966)
