@@ -1,0 +1,21 @@
+
+@mixin header-button($float, $margin-left, $margin-right) {
+  background-position: center;
+  background-size: 5.6vw;
+  border: none;
+  display: inline;
+  float: $float;
+  height: 5.6vw;
+  margin-left: $margin-left;
+  margin-right: $margin-right;
+  margin-top: 1.6vw;
+  width: 5.6vw;
+}
+
+.user-data-inputs {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 100;
+  border-color: #1F1F1F;
+}
