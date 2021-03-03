@@ -1,4 +1,4 @@
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset='UTF-8'>
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,7 +9,7 @@
   <body>
     <header>
       <h1><span id='header-name'></span>FITLIT</h1>
-      <button type='button' name='button' id='profile-button' aria-label="See user profile"></button>
+      <button type='button' class='hide' name='button' id='profile-button' aria-label="See user profile"></button>
       <section class='hide' id='user-info-dropdown'>
         <h5 id='dropdown-name'></h5>
         <p class='dropdown-p' id='dropdown-email'></p>
@@ -23,33 +23,33 @@
         <div class='top-section'>
           <h5 id='add-activity-data'>Add New Activity</h5>
           <p class='dropdown-p'>User id: <span class="user-id"></span></p>
-          <input type='date' class='date-input' name='date'></input>
+          <input type='date' class='date-input' name='date'>
         </div>
         <section class='user-data-inputs'>
-        <div class='sleep-dropdown'>
+        <form class='sleep-dropdown'>
           <h3 class='dropdown-option'>Sleep</h3>
           <p class='dropdown-p' id="sleepError">Hours slept</p>
-          <input type='number' class='hours-slept-data-input' required min='0' max='24'/></input>
+          <input type='number' class='hours-slept-data-input' required min='0' max='24'>
           <p class='dropdown-p'>Sleep Quality</p>
-          <input type='number' class='sleep-quality-data-input' required min='0' max='5'/></input>
-          <button type='button' name='button' class='add-sleep-data' aria-label='Add user sleep data to profile'>Add Sleep Data</button>
-        </div>
-          <div class='activity-dropdown'>
+          <input type='number' class='sleep-quality-data-input' required min='0' max='5'>
+          <input type='submit' value="Add Sleep Data" class='add-sleep-data' aria-label='Add user sleep data to profile'>
+        </form>
+          <form class='activity-dropdown'>
             <h3 class='dropdown-option'>Activity</h3>
             <p class='dropdown-p' id="stairsError">Number of Steps</p>
-            <input type='number' class='number-steps-data-input' required min='0'></input>
+            <input type='number' class='number-steps-data-input' required min='0'>
             <p class='dropdown-p'>Minutes Active</p>
-            <input type='number' class='minutes-active-data-input' required min='0' max='1000'></input>
+            <input type='number' class='minutes-active-data-input' required min='0' max='1000'required>
             <p class='dropdown-p'>Flights of Stairs</p>
-            <input type='number' class='flights-stairs-data-input' required min='0'></input>
-            <button type='button' name='button' class='add-activity-data' aria-label='Add user activity data to profile'>Add Activity Data</button>
-          </div>
-          <div class='hydration-dropdown'>
+            <input type='number' class='flights-stairs-data-input' required min='0'>
+            <input type='submit' value="Add Activity Data" class='add-activity-data' aria-label='Add user activity data to profile'>
+          </form>
+          <form class='hydration-dropdown'>
             <h3 class='dropdown-option'>Hydration</h3>
             <p class='dropdown-p'id="hydroError">Number of Ounces</p>
-            <input type='number' class='number-ounces-data-input' required min=''></input>
-            <button type='button' name='button' class='add-hydration-data' aria-label='Add user hydration data to profile'>Add Hydration Data</button>
-          </div>
+            <input type='number' class='number-ounces-data-input' required min=''>
+            <input type='submit' value="Add Hydration Data" class='add-hydration-data' aria-label='Add user hydration data to profile'>
+          </form>
         </section>
         </section>
     </header>
