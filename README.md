@@ -33,7 +33,6 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 ## Project Links
 
   * [Repo](https://github.com/bhohnco/Refactor-tractor-fitlit)
-  * [Deployed Page]()
 
 ## Contributors
 
