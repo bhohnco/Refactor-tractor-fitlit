@@ -1,6 +1,6 @@
 $primary-background: rgb(216, 216, 216);
-$step-color: #EF436B;
-$hydration-color: #26547D;
+$step-color: #DDA0DD;
+$hydration-color: #60e3f7;
 $stairs-color: #05C793;
 $sleep-color:#FFCE5C;
 
@@ -31,6 +31,7 @@ $sleep-color:#FFCE5C;
   background-color: $background-color;
   grid-area:$grid-area;
   margin: 0.5vw;
+  border-radius: 5px;
 }
 
 @mixin main-card-styling ($height) {
