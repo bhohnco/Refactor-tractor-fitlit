@@ -216,11 +216,6 @@ function sleepCardBuild() {
   sleepFriends()
 }
 
-function sleepFriends() {
-  sleepFriendLongestSleeper.innerText = userRepository.findBestSleepers(todayDate)[0].name;
-  sleepFriendWorstSleeper.innerText = userRepository.findBestSleepers(todayDate)[userRepository.findBestSleepers(todayDate).length - 1].name;
-}
-
 function stairsCardBuild() {
   stairAveElements()
   flightsTodayElement()
@@ -257,6 +252,11 @@ function sortHydroDate() {
       dailyOz[index].innerText = hydrationData.ounces;
     }
   })
+}
+
+function sleepFriends() {
+  sleepFriendLongestSleeper.innerText = userRepository.findBestSleepers(todayDate)[0].name;
+  sleepFriendWorstSleeper.innerText = userRepository.findBestSleepers(todayDate)[userRepository.findBestSleepers(todayDate).length - 1].name;
 }
 
 function userElements() {
