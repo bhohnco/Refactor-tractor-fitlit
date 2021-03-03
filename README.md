@@ -25,6 +25,10 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
   * Open in text editor
   * Read the README.md
 
+## Testing
+  * After cloning the repository to your personal computer
+  * Run npm install or npm i from the command line to install dependencies
+  * run npm test or npm t from the command line to run the tests on the data model
 
 ## Project Links
 
@@ -49,3 +53,4 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 
 
 ## Preview
+![](https://turingschool.slack.com/files/U01CJGLB08K/F01PZ2SG44D/refactor-fitlit.gif)
