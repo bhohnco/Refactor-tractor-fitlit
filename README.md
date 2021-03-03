@@ -53,4 +53,3 @@ To verify that it is setup correctly, run `npm start` in your terminal. Go to `h
 
 
 ## Preview
-![](https://turingschool.slack.com/files/U01CJGLB08K/F01PZ2SG44D/refactor-fitlit.gif)
