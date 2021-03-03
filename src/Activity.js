@@ -10,25 +10,24 @@ class Activity extends User {
     this.reachedStepGoal = null;
     this.parentUser = userRepository.getUser(this.id)
     this.updateActivities(this.parentUser);
-  } 
-  
+  }
+
   updateActivities() {
-    const activityDataCheck = 
+    const activityDataCheck =
     this.activityData.find(hydrationObj => hydrationObj[this.date]);
-    
     if (!activityDataCheck) {
       this.parentUser.activityData.unshift(this);
     }
-
     if (this.steps >= this.parentUser.dailyStepGoal &&
       !this.parentUser.accomplishedDays.includes(this.date)) {
       this.parentUser.accomplishedDays.unshift(this.date);
     }
-
   }
+
   calculateMiles() {
     return Math.round(this.steps * this.strideLength / 5280).toFixed(1);
   }
+  
   compareStepGoal() {
     let userStepGoal = this.dailyStepGoal;
     this.reachedStepGoal = this.steps >= userStepGoal;

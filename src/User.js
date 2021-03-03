@@ -41,12 +41,12 @@ class User extends UserRepository {
 
   updateSleep(date, hours, quality) {
     this.sleepHoursRecord.unshift({
-      'date': date,
-      'hours': hours
+      date,
+      hours
     });
     this.sleepQualityRecord.unshift({
-      'date': date,
-      'quality': quality
+      date,
+      quality
     });
     if (this.sleepHoursRecord.length) {
       this.hoursSleptAverage = ((hours + (this.hoursSleptAverage * (this.sleepHoursRecord.length - 1))) / this.sleepHoursRecord.length).toFixed(1);
@@ -107,8 +107,7 @@ class User extends UserRepository {
         this.trendingStepDays.push(`Your most recent positive step streak was ${positiveDays[0]} - ${positiveDays[positiveDays.length - 1]}!`);
         positiveDays = [];
       }
-    }) 
-    
+    })
   }
 
   findTrendingStairsDays() {
@@ -134,7 +133,6 @@ class User extends UserRepository {
           'totalWeeklySteps': matchedFriend.totalStepsThisWeek
         })
     })
-
     this.calculateTotalStepsThisWeek(date);
     this.friendsActivityRecords.push({
       'id': this.id,

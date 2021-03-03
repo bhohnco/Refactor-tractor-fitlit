@@ -59,7 +59,7 @@ describe('Hydration', function() {
   describe('drink', function () {
     it('should update the average number of ounces over all time', function() {
       user2.hydrationData = [hydrate2, hydrate3]
-      
+
       hydrate2.updateHydration(user2);
       hydrate3.updateHydration(user2)
 
