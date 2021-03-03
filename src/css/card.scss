@@ -1,0 +1,33 @@
+@mixin card-container($background-color, $grid-area) {
+  background-color: $background-color;
+  grid-area:$grid-area;
+  margin: 0.5vw;
+  border-radius: 5px;
+}
+
+@mixin main-card-styling ($height) {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: $height;
+  justify-content: center;
+}
+
+@mixin card-header($font-size) {
+  display: inline;
+  font-family: 'Work Sans', sans-serif;
+  font-size: $font-size;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+}
+
+.card-buttons {
+  background-position: center;
+  background-size: 3.4vw;
+  border: none;
+  display: inline;
+  height: 3.4vw;
+  margin-left: 1vw;
+  width: 3.4vw;
+  background-color: transparent;
+}

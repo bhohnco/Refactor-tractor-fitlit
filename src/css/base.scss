@@ -14,38 +14,3 @@ $sleep-color:#FFCE5C;
   width: $width;
 }
 
-@mixin header-button($float, $margin-left, $margin-right) {
-  background-position: center;
-  background-size: 5.6vw;
-  border: none;
-  display: inline;
-  float: $float;
-  height: 5.6vw;
-  margin-left: $margin-left;
-  margin-right: $margin-right;
-  margin-top: 1.6vw;
-  width: 5.6vw;
-}
-
-@mixin card-container($background-color, $grid-area) {
-  background-color: $background-color;
-  grid-area:$grid-area;
-  margin: 0.5vw;
-  border-radius: 5px;
-}
-
-@mixin main-card-styling ($height) {
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: $height;
-  justify-content: center;
-}
-
-@mixin card-header($font-size) {
-  display: inline;
-  font-family: 'Work Sans', sans-serif;
-  font-size: $font-size;
-  font-weight: 500;
-  letter-spacing: 0.2em;
-}
