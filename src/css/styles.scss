@@ -1,13 +1,15 @@
 @import 'base';
+@import 'card';
+@import 'header';
+
 *,
 *:after,
 *:before {
-box-sizing: border-box;
-margin: 0;
-padding: 0;
-color: #303030;
-        //(30, 100%, 96%);
-//text-shadow: 2px 2px 0px #1E9EE6, 4px 4px 0px rgba(0,0,0,0.25);
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: #303030;
+  font-family: 'Work Sans', sans-serif;
 }
 
 body {
@@ -24,10 +26,10 @@ header {
 header h1, h1 span {
   text-shadow: 1px 1px 0px rgba(0,0,0,0.25), 2px 2px 0px rgba(0,0,0,0.25);
   color: $primary-background;
-  //width: 50%;
   top: 30%;
   margin-top: 40px;
 }
+
 button:active {
   border: none;
 }
@@ -35,78 +37,52 @@ button:active {
 #add-activity-button {
   background-image: url(../images/navbutton.png);
   @include header-button(left, 1vw, 0.5vw);
-  //position:fixed;
+  position: fixed;
+  top: 0;
   left: 0;
-  //top: 0;
 }
 
 #profile-button {
   background-image: url(../images/profile.png);
   @include header-button(right, 1vw, 0.5vw);
   background-color: transparent;
+  position: fixed;
+  top: 0;
+  right: 0;
 }
 
 #user-activity-dropdown {
-  color: white;
+  background-color: $primary-background;
   margin-right: 75%;
   margin-top: -1.2%;
   position: relative;
   text-align: center;
-  //z-index: 100;
-  //width: 20%;
   padding-top: 25px;
   border-radius: 5px;
-}
-
-.user-data-inputs {
-  display: flex;
-  flex-direction: column;
-  z-index: 100;
 }
 
 .top-section {
   @extend .user-data-inputs;
-  z-index: 100;
-  align-items: center;
-  background-color: $primary-background;
-  padding-top: 15px;
-  border-radius: 5px;
 }
 
 .sleep-dropdown{
   @extend .user-data-inputs;
-  background-color: $primary-background;
-  display: flex;
-  align-items: center;
-  border-color: #1F1F1F;
 }
 
 .activity-dropdown{
   @extend .user-data-inputs;
-  background-color: $primary-background;
-  display: flex;
-  align-items: center;
-  color: #1F1F1F;
-  padding-top: 25px;
 }
 
 .hydration-dropdown{
   @extend .user-data-inputs;
-  background-color: $primary-background;
-  display: flex;
-  align-items: center;
-  border-color: #1F1F1F;
-  border-radius: 5px;
 }
 
 #user-info-dropdown {
   background-color: $primary-background;
-  color: white;
   margin-left: 75%;
   margin-top: -1.2%;
   position: relative;
   text-align: center;
-  //width: 30%;
   border-radius: 5px;
   z-index: 100;
 }
@@ -155,7 +131,6 @@ h2 {
 
 h3 {
   display: inline;
-  font-family: 'Work Sans', sans-serif;
   font-size: 2.5vw;
   font-weight: 600;
   letter-spacing: .2em;
@@ -169,12 +144,10 @@ h4 {
 
 h5 {
   font-size: 1.8vw;
-  //padding-bottom: 1vw;
   text-align: center;
 }
 
 p {
-  font-family: 'Work Sans', sans-serif;
   font-size: 1.2vw;
   font-weight: 600;
   letter-spacing: .2vw;
@@ -254,162 +227,41 @@ main {
 }
 
 /* BUTTONS */
+
 .info-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  display: inline;
-  height: 3.4vw;
-  margin-left: 1vw;
-  width: 3.4vw;
+  @extend .card-buttons;
   background-image: url('../..//information.png');
-  background-color: transparent;
 }
 
 .friends-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  display: inline;
-  height: 3.4vw;
-  margin-right: 1vw;
-  width: 3.4vw;
+  @extend .card-buttons;
   background-image: url('../..//audience.png');
-  background-color: transparent;
 }
 
 .calendar-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  display: inline;
-  float: right;
-  height: 3.4vw;
+  @extend .card-buttons;
   margin-right: 1vw;
-  width: 3.4vw;
   background-image: url('../..//calendar.png');
-  background-color: transparent;
 }
 
 .go-back-button {
-  background-position: center;
-  background-size: 3.4vw;
-  border: none;
-  height: 3.4vw;
-  margin-left: 1vw;
-  width: 3.4vw;
+  @extend .card-buttons;
   background-image: url('../..//undo.png');
-  background-color: transparent;
-}
-
-// .steps-go-back-button {
-//   background-image: url(../images/steps-goback.png);
-// }
-
-// .steps-info-button {
-//   background-image: url(../images/steps-info.png);
-// }
-
-// .steps-friends-button {
-//   background-image: url(../images/steps-friends.png);
-// }
-
-// .steps-calendar-button {
-//   background-image: url(../images/steps-calendar.png);
-//   color: $step-color
-// }
-
-// .hydration-go-back-button {
-//   background-image: url(../images/hydration-goback.png);
-// }
-
-// .hydration-info-button {
-//   background-image: url(../images/hydration-info.png);
-// }
-
-// .hydration-friends-button {
-//   background-image: url(../images/hydration-friends.png);
-// }
-
-// .hydration-calendar-button {
-//   background-image: url(../images/hydration-calendar.png);
-// }
-
-// .stairs-go-back-button {
-//   background-image: url(../images/stairs-goback.png);
-// }
-
-// .stairs-info-button {
-//   background-image: url(../images/stairs-info.png);
-// }
-
-// .stairs-friends-button {
-//   background-image: url(../images/stairs-friends.png);
-// }
-
-// .stairs-calendar-button {
-//   background-image: url(../images/stairs-calendar.png);
-// }
-
-// .sleep-go-back-button {
-//   background-image: url(../images/sleep-goback.png);
-// }
-
-// .sleep-info-button {
-//   background-image: url(../images/sleep-info.png);
-// }
-
-// .sleep-friends-button {
-//   background-image: url(../images/sleep-friends.png);
-// }
-
-// .sleep-calendar-button {
-//   background-image: url(../images/sleep-calendar.png);
-// }
-
-
-// .steps-trending-button {
-//   background-image: url(../images/steps-trending.png);
-// }
-
-// .stairs-trending-button {
-//   background-image: url(../images/stairs-trending.png);
-// }
-
-/* CHANGING CLASSES */
-.vis-hidden {
-  visibility: hidden;
 }
 
 .hide {
   display: none;
 }
 
-.green-text {
-  color: green;
-}
-
-.red-text {
-  color: red;
-}
-
-.yellow-text {
-  color: #F8BA00;
-}
-
-.white-text {
-  color: white;
-}
-
-@media only screen  and (min-width : 1224px) {
-  /* Desktops and laptops */
-}
-
 @media screen and (max-width: 768px) {
   //tablet//
-  main {
-    display: grid;
-    //flex-direction: column;
+
+  #user-activity-dropdown {
+    margin-right: 55%;
+  }
+
+  #user-info-dropdown {
+    margin-left: 55%;
   }
 
   .main-card {
@@ -430,6 +282,14 @@ main {
     text-align: center;
     width: 100%;
   }
+
+  h4 {
+    font-size: 8vw;
+  }
+
+  p {
+    font-size: 1.9vw;
+  }
 }
 
 @media screen and (max-width: 414px) {
@@ -441,7 +301,7 @@ main {
     background-color: #303030;
     width: 100%;
   }
-  
+
   main {
     display: flex;
     flex-flow: column;
@@ -452,10 +312,10 @@ main {
 
   .card-container {
     margin: 0;
-    height: 20%;
+    height: 23%;
   }
 
-  .main-card, .info-card, .friends-card, .calendar-card  {
+  .main-card, .info-card, .friends-card, .calendar-card {
     height: 100%;
     overflow-y: scroll
   }
@@ -470,7 +330,6 @@ main {
   .friends-button {
     @extend .icon;
     @include height-and-width(6vh, 6vh);
-
   }
 
   header h1, h1 span {
@@ -478,9 +337,14 @@ main {
     font-weight: bolder;
   }
 
-  .date-input {
-    //margin-right: auto;
+  #user-activity-dropdown {
+    margin-right: 50%;
   }
+
+  #user-info-dropdown {
+    margin-left: 50%;
+  }
+
   .dropdown-option.h3 {
     font-size:1.1em;
     font-weight: 3000;
@@ -499,7 +363,6 @@ main {
   }
 
   .dropdown-p {
-    //font-size: 1.3em;
     font-size: 1em;
     font-weight: 300;
     padding-bottom: 1.2vw;
@@ -509,21 +372,14 @@ main {
   }
 
   p {
-    font-family: 'Work Sans', sans-serif;
     font-size: 1.4vw;
     font-weight: 600;
-    //letter-spacing: .2vw;
-    //margin-right: 1vw;
-    //padding-top: 2vw;
-    //text-align: right;
-    //width: 9vw;
-    //word-break: keep-all;
   }
 
   .add-sleep-data, .add-activity-data, .add-hydration-data {
     @include height-and-width(25px, 120px);
     margin-bottom: 2%;
-    color:blue;
+    color:black;
     text-shadow: none;
   }
 
