@@ -1,7 +1,6 @@
 @mixin card-container($background-color, $grid-area) {
   background-color: $background-color;
   grid-area:$grid-area;
-  margin: 0.5vw;
   border-radius: 5px;
 }
 
