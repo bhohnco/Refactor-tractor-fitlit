@@ -238,10 +238,12 @@ function flipCard(cardToHide, cardToShow) {
 
 function showDropdown() {
   userInfoDropdown.classList.toggle('hide');
+  addUserActivity.classList.add('hide');
 }
 
 function showUserDropdown() {
   userActivityDropdown.classList.toggle('hide');
+  profileButton.classList.add('hide');
 }
 
 function sortHydroDate() {
